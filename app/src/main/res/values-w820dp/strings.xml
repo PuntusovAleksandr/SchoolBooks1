@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_levels">Все классы</string>
+    <string name="level1">Класс 1</string>
+    <string name="level2">Класс 2</string>
+    <string name="level3">Класс 3</string>
+    <string name="level4">Класс 4</string>
+    <string name="level5">Класс 5</string>
+    <string name="level6">Класс 6</string>
+    <string name="level7">Класс 7</string>
+    <string name="level8">Класс 8</string>
+    <string name="level9">Класс 9</string>
+    <string name="level10">Класс 10</string>
+    <string name="level11">Класс 11</string>
+    <string name="books">Книги</string>
+    <string name="gdz">ГДЗ</string>
+    <string name="added_in_device">Наличие на устройстве</string>
+</resources>
