@@ -65,7 +65,7 @@ public class BooksFragment extends Fragment {
 
     private ArrayList<SchoolItem> getListItemsByBooks() {
         if (db == null) db = new DBImpl(getActivity());
-        return db.getSchoolItems(StartActivity.selectLevel);
+        return db.getSchoolItems(StartActivity.selectItem);
     }
 
 }

@@ -66,7 +66,7 @@ public class GDZFragment extends Fragment {
 
     private ArrayList<SchoolItem> getListSchoolItems() {
         if (db == null) db = new DBImpl(getActivity());
-        return db.getSchoolItems(StartActivity.selectLevel);
+        return db.getSchoolItems(StartActivity.selectItem);
     }
 
 }

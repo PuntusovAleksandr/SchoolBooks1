@@ -15,8 +15,6 @@ import android.view.MenuItem;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
-import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
-import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -26,7 +24,7 @@ public class StartActivity extends AppCompatActivity
 
     private GetAndShowFile getAndShowFile;
 
-    public static int selectLevel = 1;
+    public static int selectItem = 1;
 
     private DBImpl db;
 
@@ -110,47 +108,47 @@ public class StartActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.level_1) {
-            if (selectLevel != 1)selectLevel = 1;
+            if (selectItem != 1) selectItem = 1;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_2) {
-            if (selectLevel != 2)selectLevel = 2;
+            if (selectItem != 2) selectItem = 2;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_3) {
-            if (selectLevel != 31)selectLevel = 3;
+            if (selectItem != 31) selectItem = 3;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_4) {
-            if (selectLevel != 4)selectLevel = 4;
+            if (selectItem != 4) selectItem = 4;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_5) {
-            if (selectLevel != 5)selectLevel = 5;
+            if (selectItem != 5) selectItem = 5;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_6) {
-            if (selectLevel != 6)selectLevel = 6;
+            if (selectItem != 6) selectItem = 6;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_7) {
-            if (selectLevel != 7)selectLevel = 7;
+            if (selectItem != 7) selectItem = 7;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_8) {
-            if (selectLevel != 8)selectLevel = 8;
+            if (selectItem != 8) selectItem = 8;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_9) {
-            if (selectLevel != 9)selectLevel = 9;
+            if (selectItem != 9) selectItem = 9;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_10) {
-            if (selectLevel != 10)selectLevel = 10;
+            if (selectItem != 10) selectItem = 10;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_11) {
-            if (selectLevel != 11)selectLevel = 11;
+            if (selectItem != 11) selectItem = 11;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         }else if (id == R.id.nav_share) {
@@ -162,8 +160,8 @@ public class StartActivity extends AppCompatActivity
     }
 
     private void updateData() {
-        BooksFragment.getInstance().updateList();
-        GDZFragment.getInstance().update();
+//        BooksFragment.getInstance().updateList();
+//        GDZFragment.getInstance().update();
     }
 
     @Override

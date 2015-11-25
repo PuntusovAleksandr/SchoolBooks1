@@ -15,4 +15,16 @@
     <string name="books">Книги</string>
     <string name="gdz">ГДЗ</string>
     <string name="added_in_device">Наличие на устройстве</string>
+    <string name="english_item">Английский язык</string>
+    <string name="bukvar_item">Букварь</string>
+    <string name="izobrazitelnoe_iscusstvo_item">Изобразительное исскуство</string>
+    <string name="mathematica_item">Математика</string>
+    <string name="music_item">Музыка</string>
+    <string name="deatich_item">Немецкий язык</string>
+    <string name="basic_healf_item">Основы здоровья</string>
+    <string name="prirodovedenie_item">Природоведение</string>
+    <string name="russian_item">Русский язык</string>
+    <string name="trud_item">Трудовое обучени</string>
+    <string name="ukranian_item">Украинский язык</string>
+    <string name="franch_item">Французкий язык</string>
 </resources>
