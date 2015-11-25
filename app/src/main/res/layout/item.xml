@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="16dp"
+            android:layout_centerVertical="true"
             android:padding="@dimen/cardview_default_radius"
             android:src="@drawable/books_70x70"
             android:background="@android:color/transparent" />
@@ -39,10 +40,10 @@
             android:background="@android:color/transparent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <!--<TextView-->
+                <!--android:id="@+id/tv_title"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
 
             <TextView
                 android:id="@+id/tve_name"
@@ -50,10 +51,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"/>
 
-            <TextView
-                android:id="@+id/tv_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <!--<TextView-->
+                <!--android:id="@+id/tv_data"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"/>-->
 
         </LinearLayout>
         <ImageView
@@ -61,6 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:src="@drawable/download_pdf_70x70"
             android:background="@android:color/transparent" />
     </RelativeLayout>
