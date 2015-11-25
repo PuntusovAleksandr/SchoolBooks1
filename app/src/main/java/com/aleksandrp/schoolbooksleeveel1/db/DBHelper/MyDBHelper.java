@@ -26,6 +26,8 @@ public class MyDBHelper extends SQLiteOpenHelper implements ValuesDB {
         Log.i(TAG_DB, "Start ::: " + TABLE_GDZ_LEVEL_1);
         db.execSQL(CREATE_TABLE_GDZ);
         Log.i(TAG_DB, "Finish  ::: ");
+
+        db.execSQL(Insert);
     }
 
     @Override

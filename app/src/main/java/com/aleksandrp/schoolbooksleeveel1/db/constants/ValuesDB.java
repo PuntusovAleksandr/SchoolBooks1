@@ -38,4 +38,19 @@ public interface ValuesDB {
             COLUMN_LINK_LOADER + "      TEXT    NOT NULL, \n" +
             COLUMN_ITEM + " INTEGER NOT NULL);";
 
+    String Insert = "\n" +
+            "INSERT INTO school_books_level_1 (name_book, small_icon_book, icon_status_loader, link_download, item) VALUES \n" +
+            "('fi15', 0, 0, \"ff1\", 1),\n" +
+            "('fi52', 0, 0, \"ff1\", 2),\n" +
+            "('fi53', 0, 0, \"ff1\", 3),\n" +
+            "('fi54', 0, 0, \"ff1\", 4),\n" +
+            "('fi55', 0, 0, \"ff1\", 5),\n" +
+            "('fi56', 0, 0, \"ff1\", 6),\n" +
+            "('fi57', 0, 0, \"ff1\", 1),\n" +
+            "('fi85', 0, 0, \"ff1\", 2),\n" +
+            "('fi95', 0, 0, \"ff1\", 1),\n" +
+            "('fi10', 0, 0, \"ff1\", 1);";
+
+
+
 }

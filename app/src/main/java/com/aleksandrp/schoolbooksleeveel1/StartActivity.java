@@ -15,6 +15,8 @@ import android.view.MenuItem;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
+import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
+import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -116,7 +118,7 @@ public class StartActivity extends AppCompatActivity
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_3) {
-            if (selectItem != 31) selectItem = 3;
+            if (selectItem != 3) selectItem = 3;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.level_4) {
@@ -151,6 +153,10 @@ public class StartActivity extends AppCompatActivity
             if (selectItem != 11) selectItem = 11;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.level_12) {
+            if (selectItem != 12) selectItem = 12;
+            updateData();
+            drawer.closeDrawer(GravityCompat.START);
         }else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
@@ -160,8 +166,8 @@ public class StartActivity extends AppCompatActivity
     }
 
     private void updateData() {
-//        BooksFragment.getInstance().updateList();
-//        GDZFragment.getInstance().update();
+        BooksFragment.getInstance().updateList();
+        GDZFragment.getInstance().update();
     }
 
     @Override
