@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.StartActivity;
-import com.aleksandrp.schoolbooksleeveel1.adapter.SchoolsItemsRecyclerAdapter;
-import com.aleksandrp.schoolbooksleeveel1.db.entity.SchoolItem;
+import com.aleksandrp.schoolbooksleeveel1.adapter.BookRecyclerAdapter;
+import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class BooksFragment extends Fragment {
 
     private DBImpl db;
     private RecyclerView recyclerView;
-    public SchoolsItemsRecyclerAdapter sRecyclerViewAdapter;
+    public BookRecyclerAdapter sRecyclerViewAdapter;
 
     private static BooksFragment fragment;
 
@@ -59,13 +59,13 @@ public class BooksFragment extends Fragment {
 
     public void updateList() {
         if (sRecyclerViewAdapter != null) sRecyclerViewAdapter = null;
-        sRecyclerViewAdapter = new SchoolsItemsRecyclerAdapter(getListItemsByBooks(), getActivity());
+        sRecyclerViewAdapter = new BookRecyclerAdapter(getListItemsByBooks(), getActivity());
         recyclerView.setAdapter(sRecyclerViewAdapter);
     }
 
-    private ArrayList<SchoolItem> getListItemsByBooks() {
+    private ArrayList<Book> getListItemsByBooks() {
         if (db == null) db = new DBImpl(getActivity());
-        return db.getSchoolItems(StartActivity.selectItem);
+        return db.getBooksListByItems(StartActivity.selectItem);
     }
 
 }

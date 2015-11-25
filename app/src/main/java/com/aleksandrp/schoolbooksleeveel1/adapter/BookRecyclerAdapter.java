@@ -6,24 +6,28 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
-import com.aleksandrp.schoolbooksleeveel1.db.entity.SchoolItem;
+import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 
 import java.util.ArrayList;
 
 /**
  * Created by Aleksandr on 19.11.2015.
  */
-public class SchoolsItemsRecyclerAdapter extends
-        RecyclerView.Adapter<SchoolsItemsRecyclerAdapter.TimeViewHolder> {
+public class BookRecyclerAdapter extends
+        RecyclerView.Adapter<BookRecyclerAdapter.TimeViewHolder> {
 
-    private ArrayList<SchoolItem> listItems;
+    private ArrayList<Book> listItems;
     private Context context;
 
+    private String link;
 
-    public SchoolsItemsRecyclerAdapter(ArrayList<SchoolItem> listItems, Context context) {
+
+    public BookRecyclerAdapter(ArrayList<Book> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
     }
@@ -33,11 +37,16 @@ public class SchoolsItemsRecyclerAdapter extends
         CardView mCardView;
 
         TextView mTvName;
+        ImageView mSmallIcon;
+        ImageView mIconStatus;
+
 
         TimeViewHolder(View itemView) {
             super(itemView);
             mCardView = (CardView) itemView.findViewById(R.id.cv_item);
             mTvName = (TextView) itemView.findViewById(R.id.tve_name);
+            mSmallIcon = (ImageView) itemView.findViewById(R.id.iv_small_icon);
+            mIconStatus = (ImageView) itemView.findViewById(R.id.iv_icon_status);
         }
     }
 
@@ -49,8 +58,17 @@ public class SchoolsItemsRecyclerAdapter extends
 
     @Override
     public void onBindViewHolder(TimeViewHolder holder, int position) {
-        holder.mTvName.setText(listItems.get(position).getName_item());
-
+        holder.mTvName.setText(listItems.get(position).getNameBook());
+        int resSmall = listItems.get(position).getSmallIcon();
+        int resStatua = listItems.get(position).getIconStatus();
+        if (resSmall != 0) {
+            holder.mSmallIcon.setImageResource(resSmall);
+        }
+        if (resStatua != 0) {
+            holder.mIconStatus.setImageResource(resStatua);
+        }
+        link = listItems.get(position).getLinkDownload();
+        holder.mCardView.setOnClickListener(listener);
     }
 
     @Override
@@ -66,7 +84,7 @@ public class SchoolsItemsRecyclerAdapter extends
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            Toast.makeText(context, "Link book :: " + link, Toast.LENGTH_SHORT).show();
         }
     };
 }

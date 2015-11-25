@@ -19,16 +19,13 @@ public class MyDBHelper extends SQLiteOpenHelper implements ValuesDB {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.i(TABLE_BOOK, "Start ::: " + CREATE_TABLE_BOOK);
+        Log.i(TAG_DB, "Start ::: " + CREATE_TABLE_BOOK);
         db.execSQL(CREATE_TABLE_BOOK);
+        Log.i(TAG_DB, "Finish  ::: ");
 
-        Log.i(TABLE_ITEM, "Start ::: " + CREATE_TABLE_ITEM);
-        db.execSQL(CREATE_TABLE_ITEM);
-
-        Log.i(TABLE_BOOK, "Start ::: " + INSERT_ITEMS);
-        db.execSQL(INSERT_ITEMS);
-
-
+        Log.i(TAG_DB, "Start ::: " + TABLE_GDZ_LEVEL_1);
+        db.execSQL(CREATE_TABLE_GDZ);
+        Log.i(TAG_DB, "Finish  ::: ");
     }
 
     @Override

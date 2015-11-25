@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.StartActivity;
-import com.aleksandrp.schoolbooksleeveel1.adapter.SchoolsItemsRecyclerAdapter;
-import com.aleksandrp.schoolbooksleeveel1.db.entity.SchoolItem;
+import com.aleksandrp.schoolbooksleeveel1.adapter.GDZRecyclerAdapter;
+import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class GDZFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private static GDZFragment fragment;
-    public SchoolsItemsRecyclerAdapter sRecyclerViewAdapter;
+    public GDZRecyclerAdapter sRecyclerViewAdapter;
 
     public GDZFragment() {
         // Required empty public constructor
@@ -60,13 +60,13 @@ public class GDZFragment extends Fragment {
 
     public void update() {
         if (sRecyclerViewAdapter != null) sRecyclerViewAdapter = null;
-        sRecyclerViewAdapter = new SchoolsItemsRecyclerAdapter(getListSchoolItems(), getActivity());
+        sRecyclerViewAdapter = new GDZRecyclerAdapter(getListSchoolItems(), getActivity());
         recyclerView.setAdapter(sRecyclerViewAdapter);
     }
 
-    private ArrayList<SchoolItem> getListSchoolItems() {
+    private ArrayList<Book> getListSchoolItems() {
         if (db == null) db = new DBImpl(getActivity());
-        return db.getSchoolItems(StartActivity.selectItem);
+        return db.getGDZListByItems(StartActivity.selectItem);
     }
 
 }

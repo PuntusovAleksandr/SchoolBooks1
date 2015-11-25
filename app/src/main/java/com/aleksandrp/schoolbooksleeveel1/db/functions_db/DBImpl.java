@@ -10,7 +10,7 @@ import android.util.Log;
 
 import com.aleksandrp.schoolbooksleeveel1.db.DBHelper.MyDBHelper;
 import com.aleksandrp.schoolbooksleeveel1.db.constants.ValuesDB;
-import com.aleksandrp.schoolbooksleeveel1.db.entity.SchoolItem;
+import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 
@@ -69,25 +69,56 @@ public class DBImpl implements ValuesDB {
 
 
     @NonNull
-    public ArrayList<SchoolItem> getSchoolItems(int level) {
-        ArrayList<SchoolItem> mSchoolItems = new ArrayList<>();
+    public ArrayList<Book> getBooksListByItems(int level) {
+        ArrayList<Book> booksList = new ArrayList<>();
         openDb();
         try {
-            cursor = database.query(TABLE_ITEM, null, COLUMN_LEVEL_ITEM + " = ?",
-                    new String[]{level + ""}, null, null, COLUMN_NAME_ITEM);
+            cursor = database.query(TABLE_BOOKS_LEVEL_1, null, COLUMN_ITEM + " = ?",
+                    new String[]{level + ""}, null, null, COLUMN_NAME_BOOK);
             if (cursor.moveToFirst()) {
                 do {
-                    long id = cursor.getLong(cursor.getColumnIndex(COLUMN_ID));
-                    String name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_ITEM));
-                    int lev = cursor.getInt(cursor.getColumnIndex(COLUMN_LEVEL_ITEM));
-                    mSchoolItems.add(new SchoolItem(id, lev, name));
+                    String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
+                    int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
+                    int iconStatus = cursor.getInt(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
+                    int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
+                    booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
                 } while (cursor.moveToNext());
             }
-            cursor.close();
         } catch (SQLiteException e) {
             Log.e(ValuesDB.TAG_DB, e.getStackTrace().toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-        return mSchoolItems;
+        return booksList;
+    }
+
+    public ArrayList<Book> getGDZListByItems(int level) {
+        ArrayList<Book> booksList = new ArrayList<>();
+        openDb();
+        try {
+            cursor = database.query(TABLE_GDZ_LEVEL_1, null, COLUMN_ITEM + " = ?",
+                    new String[]{level + ""}, null, null, COLUMN_NAME_BOOK);
+            if (cursor.moveToFirst()) {
+                do {
+                    String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
+                    int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
+                    int iconStatus = cursor.getInt(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
+                    int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
+                    booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.e(ValuesDB.TAG_DB, e.getStackTrace().toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return booksList;
     }
 
 //    public void removeAllTime() {
