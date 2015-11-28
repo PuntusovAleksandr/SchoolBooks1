@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
+import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialog;
 
 import java.util.ArrayList;
 
@@ -59,7 +60,7 @@ public class GDZRecyclerAdapter extends
     @Override
     public void onBindViewHolder(TimeViewHolder holder, int position) {
         holder.mTvName.setText(listItems.get(position).getNameBook());
-        int resSmall = listItems.get(position).getSmallIcon();
+        final int resSmall = listItems.get(position).getSmallIcon();
         String resStatua = listItems.get(position).getIconStatus();
         if (resSmall != 0) {
             holder.mSmallIcon.setImageResource(resSmall);
@@ -68,7 +69,16 @@ public class GDZRecyclerAdapter extends
             holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
         }
         link = listItems.get(position).getLinkDownload();
-        holder.mCardView.setOnClickListener(listener);
+
+        final String nameBook = listItems.get(position).getNameBook();
+        holder.mSmallIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Link book :: " + link, Toast.LENGTH_SHORT).show();
+                ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
+                contextDialog.show();
+            }
+        });
     }
 
     @Override
@@ -81,10 +91,5 @@ public class GDZRecyclerAdapter extends
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(context, "Link book :: " + link, Toast.LENGTH_SHORT).show();
-        }
-    };
+
 }
