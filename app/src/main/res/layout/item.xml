@@ -16,13 +16,13 @@
 
         <ImageView
             android:id="@+id/iv_small_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_small_icon"
+            android:layout_height="@dimen/size_small_icon"
             android:layout_alignParentLeft="true"
             android:layout_marginRight="16dp"
             android:layout_centerVertical="true"
             android:padding="@dimen/cardview_default_radius"
-            android:src="@drawable/books_70x70"
+            android:src="@drawable/books_500x500"
             android:background="@android:color/transparent" />
 
         <TextView
@@ -59,8 +59,8 @@
         </LinearLayout>
         <ImageView
             android:id="@+id/iv_icon_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/size_small_icon"
+            android:layout_height="@dimen/size_small_icon"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:src="@drawable/download_pdf_70x70"

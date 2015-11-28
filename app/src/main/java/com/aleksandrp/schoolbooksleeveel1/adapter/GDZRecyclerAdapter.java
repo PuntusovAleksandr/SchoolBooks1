@@ -60,12 +60,12 @@ public class GDZRecyclerAdapter extends
     public void onBindViewHolder(TimeViewHolder holder, int position) {
         holder.mTvName.setText(listItems.get(position).getNameBook());
         int resSmall = listItems.get(position).getSmallIcon();
-        int resStatua = listItems.get(position).getIconStatus();
+        String resStatua = listItems.get(position).getIconStatus();
         if (resSmall != 0) {
             holder.mSmallIcon.setImageResource(resSmall);
         }
-        if (resStatua != 0) {
-            holder.mIconStatus.setImageResource(resStatua);
+        if (resStatua.length() > 1) {
+            holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
         }
         link = listItems.get(position).getLinkDownload();
         holder.mCardView.setOnClickListener(listener);

@@ -7,11 +7,11 @@ public class Book {
 
     private String nameBook;
     private int smallIcon;
-    private int iconStatus;
+    private String iconStatus;
     private String linkDownload;
     private int item;
 
-    public Book(String nameBook, int smallIcon, int iconStatus, String linkDownload, int item) {
+    public Book(String nameBook, int smallIcon, String iconStatus, String linkDownload, int item) {
         this.nameBook = nameBook;
         this.smallIcon = smallIcon;
         this.iconStatus = iconStatus;
@@ -35,11 +35,11 @@ public class Book {
         this.smallIcon = smallIcon;
     }
 
-    public int getIconStatus() {
+    public String getIconStatus() {
         return iconStatus;
     }
 
-    public void setIconStatus(int iconStatus) {
+    public void setIconStatus(String iconStatus) {
         this.iconStatus = iconStatus;
     }
 

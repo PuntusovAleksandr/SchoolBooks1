@@ -79,7 +79,7 @@ public class DBImpl implements ValuesDB {
                 do {
                     String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
                     int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
-                    int iconStatus = cursor.getInt(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String iconStatus = cursor.getString(cursor.getColumnIndex(COLUMN_ICON_STATUS));
                     String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
                     int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
                     booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
@@ -105,7 +105,7 @@ public class DBImpl implements ValuesDB {
                 do {
                     String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
                     int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
-                    int iconStatus = cursor.getInt(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String iconStatus = cursor.getString(cursor.getColumnIndex(COLUMN_ICON_STATUS));
                     String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
                     int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
                     booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
