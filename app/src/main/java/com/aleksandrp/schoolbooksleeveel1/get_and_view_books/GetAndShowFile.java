@@ -8,6 +8,8 @@ import android.os.AsyncTask;
 import android.os.Environment;
 
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
+import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
+import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.reader_pdf.WorkingClass;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -59,16 +61,19 @@ public class GetAndShowFile implements StaticValues {
         } else {
             AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(mContext);
             mAlertDialog.setTitle("Такого файла нет в библеотеке");
+            final String finalNameFile = nameFile.substring(0, nameFile.lastIndexOf("."));
             mAlertDialog.setPositiveButton(mContext.getResources().getString(android.R.string.ok),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            db.putFlagLoader("0", name);
+                            db.putFlagLoader("0", finalNameFile);
+
                             dialog.cancel();
                         }
                     });
             mAlertDialog.show();
-            db.putFlagLoader("0", name);
+            BooksFragment.getInstance().updateList();
+            GDZFragment.getInstance().update();
         }
     }
 

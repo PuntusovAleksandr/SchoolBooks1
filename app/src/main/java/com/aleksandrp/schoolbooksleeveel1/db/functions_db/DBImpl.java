@@ -129,7 +129,7 @@ public class DBImpl implements ValuesDB {
                 contentValues.put(COLUMN_ICON_STATUS, key);
             } else
                 contentValues.put(COLUMN_ICON_STATUS, name);
-            database.update(TABLE_BOOKS_LEVEL_1, contentValues, COLUMN_NAME_BOOK + " = '" + name + "';", null);
+            int row = database.update(TABLE_BOOKS_LEVEL_1, contentValues, COLUMN_NAME_BOOK + " = '" + name + "';", null);
         } catch (SQLiteException e) {
             e.printStackTrace();
         }
