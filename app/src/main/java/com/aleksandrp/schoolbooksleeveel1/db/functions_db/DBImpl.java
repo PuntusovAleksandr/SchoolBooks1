@@ -121,6 +121,21 @@ public class DBImpl implements ValuesDB {
         return booksList;
     }
 
+    public void putFlagLoader(String key, String name) {
+        openDb();
+        try {
+            contentValues = new ContentValues();
+            if (key.equals("0")) {
+                contentValues.put(COLUMN_ICON_STATUS, key);
+            } else
+                contentValues.put(COLUMN_ICON_STATUS, name);
+            database.update(TABLE_BOOKS_LEVEL_1, contentValues, COLUMN_NAME_BOOK + " = '" + name + "';", null);
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        }
+        refresh();
+    }
+
 //    public void removeAllTime() {
 //        openDb();
 //        Log.i(ValuesDB.TAG_DB, "removeAllTime all ");

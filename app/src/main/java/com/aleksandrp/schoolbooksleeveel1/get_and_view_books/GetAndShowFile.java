@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 
+import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.reader_pdf.WorkingClass;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -22,24 +23,27 @@ public class GetAndShowFile implements StaticValues {
 
     private static Context mContext;
     private static GetAndShowFile mGerAndShowFile;
+    private  String name;
+    DBImpl db;
+
 
     public GetAndShowFile(Context context) {
         this.mContext = context;
+        db = new DBImpl(mContext);
     }
 
 
-    public void downloadFileFromReppositoria(String fileUri) {
-//        fileUri = "https://docs.google.com/uc?authuser=0&id=0B3SV6nfdIWiyU0w5SXRtaGVyUzg&export=download";
-//        fileUri = "https://mega.nz/#!L9AyQZwK!FddpOLI6IkbexifdWpSeV4S61vGhRV7yy4XZ57-eNN8";
-        fileUri = "http://maven.apache.org/maven-1.x/maven.pdf";
-//        fileUri = "http://pidruchnyk.com.ua/uploads/book/Matematyka_3klas_Rivkind.pdf";
-        String fileName = fileUri.substring(fileUri.lastIndexOf("/") + 1);
-//        String fileName = "qqq.pdf";
+    public void downloadFileFromReppositoria(String fileUri, String nameBook) {
+        String addedPart = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=";
+        fileUri = addedPart + fileUri.substring(fileUri.indexOf("=") + 1);
+        this.name = nameBook;
+        String fileName = nameBook + ".pdf";
         new DownloadFile().execute(fileUri, fileName);
     }
 
     public void viewFile(String nameFile) {
-        nameFile = "maven.pdf";
+        nameFile += ".pdf";
+//        nameFile = "maven.pdf";
 //        nameFile = "Французька мова (Клименко) 1 клас.pdf";
         String path = Environment.getExternalStorageDirectory() + "/" +
                 NAME_FOLDER_SAVED + "/" + nameFile;
@@ -52,22 +56,23 @@ public class GetAndShowFile implements StaticValues {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
             AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(mContext);
             mAlertDialog.setTitle("Такого файла нет в библеотеке");
             mAlertDialog.setPositiveButton(mContext.getResources().getString(android.R.string.ok),
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            db.putFlagLoader("0", name);
                             dialog.cancel();
                         }
                     });
             mAlertDialog.show();
+            db.putFlagLoader("0", name);
         }
     }
 
     private class DownloadFile extends AsyncTask<String, Void, Void> {
-
         @Override
         protected Void doInBackground(String... strings) {
             String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
@@ -87,6 +92,18 @@ public class GetAndShowFile implements StaticValues {
             }
             FileDownloader.downloadFile(fileUrl, pdfFile);
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            db.putFlagLoader(name, name);
         }
     }
 }

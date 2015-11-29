@@ -35,8 +35,8 @@ public interface ValuesDB {
             TABLE_GDZ_LEVEL_1 + " (\n" +
             COLUMN_NAME_BOOK + "          TEXT    NOT NULL, \n" +
             COLUMN_SMALL_ICON + "    INTEGER DEFAULT (0), \n" +
-            COLUMN_ICON_STATUS + " INTEGER NOT NULL\n" +
-            "                               DEFAULT (0), \n" +
+            COLUMN_ICON_STATUS + " TEXT NOT NULL\n" +
+            "                               DEFAULT ('0'), \n" +
             COLUMN_LINK_LOADER + "      TEXT    NOT NULL, \n" +
             COLUMN_ITEM + " INTEGER NOT NULL);";
 

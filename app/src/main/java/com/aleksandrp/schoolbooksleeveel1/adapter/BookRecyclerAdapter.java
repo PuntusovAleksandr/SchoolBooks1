@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialog;
+import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,8 @@ public class BookRecyclerAdapter extends
     private Context context;
 
     private String link;
+
+    private GetAndShowFile getFile;
 
 
     public BookRecyclerAdapter(ArrayList<Book> listItems, Context context) {
@@ -65,9 +68,9 @@ public class BookRecyclerAdapter extends
         if (resSmall != 0) {
             holder.mSmallIcon.setImageResource(resSmall);
         }
-        if (resStatua.length() > 1) {
+        if (!resStatua.equals("0")) {
             holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
-        }
+        }else holder.mIconStatus.setImageResource(R.drawable.download_pdf_70x70);
         link = listItems.get(position).getLinkDownload();
 
         final String nameBook = listItems.get(position).getNameBook();
@@ -77,6 +80,21 @@ public class BookRecyclerAdapter extends
                 Toast.makeText(context, "Link book :: " + link, Toast.LENGTH_SHORT).show();
                 ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
                 contextDialog.show();
+            }
+        });
+        holder.mIconStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFile = new GetAndShowFile(context);
+                getFile.downloadFileFromReppositoria(link, nameBook);
+            }
+        });
+
+        holder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFile = new GetAndShowFile(context);
+                getFile.viewFile(nameBook);
             }
         });
     }
