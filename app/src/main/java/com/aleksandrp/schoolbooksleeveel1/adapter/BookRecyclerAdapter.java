@@ -70,7 +70,11 @@ public class BookRecyclerAdapter extends
         }
         if (!resStatua.equals("0")) {
             holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
-        }else holder.mIconStatus.setImageResource(R.drawable.download_pdf_70x70);
+            holder.mIconStatus.setEnabled(false);
+        }else {
+            holder.mIconStatus.setImageResource(R.drawable.download_pdf_70x70);
+            holder.mIconStatus.setEnabled(true);
+        }
         link = listItems.get(position).getLinkDownload();
 
         final String nameBook = listItems.get(position).getNameBook();
