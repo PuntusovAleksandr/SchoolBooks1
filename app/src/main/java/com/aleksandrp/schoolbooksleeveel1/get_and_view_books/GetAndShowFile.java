@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.view.View;
 
+import com.aleksandrp.schoolbooksleeveel1.StartActivity;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
@@ -16,7 +18,13 @@ import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Aleksandr on 14.11.2015.
@@ -25,8 +33,8 @@ public class GetAndShowFile implements StaticValues {
 
     private static Context mContext;
     private static GetAndShowFile mGerAndShowFile;
-    private  String name;
-    DBImpl db;
+    private String name;
+    private DBImpl db;
 
 
     public GetAndShowFile(Context context) {
@@ -36,7 +44,7 @@ public class GetAndShowFile implements StaticValues {
 
 
     public void downloadFileFromReppositoria(String fileUri, String nameBook) {
-        String addedPart = "https://drive.google.com/uc?export=download&confirm=no_antivirus&id=";
+        String addedPart = LINK_DOWNLOAD;
         fileUri = addedPart + fileUri.substring(fileUri.indexOf("=") + 1);
         this.name = nameBook;
         String fileName = nameBook + ".pdf";
@@ -45,8 +53,6 @@ public class GetAndShowFile implements StaticValues {
 
     public void viewFile(String nameFile) {
         nameFile += ".pdf";
-//        nameFile = "maven.pdf";
-//        nameFile = "Французька мова (Клименко) 1 клас.pdf";
         String path = Environment.getExternalStorageDirectory() + "/" +
                 NAME_FOLDER_SAVED + "/" + nameFile;
         File pdfFile = new File(path);  // -> filename = maven.pdf
@@ -67,7 +73,6 @@ public class GetAndShowFile implements StaticValues {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             db.putFlagLoader("0", finalNameFile);
-
                             dialog.cancel();
                         }
                     });
@@ -77,7 +82,14 @@ public class GetAndShowFile implements StaticValues {
         }
     }
 
-    private class DownloadFile extends AsyncTask<String, Void, Void> {
+    protected class DownloadFile extends AsyncTask<String, Integer, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            StartActivity.mProgressBar.setVisibility(View.VISIBLE);
+        }
+
         @Override
         protected Void doInBackground(String... strings) {
             String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
@@ -87,28 +99,62 @@ public class GetAndShowFile implements StaticValues {
             folder.mkdir();
 
             File pdfFile = new File(folder, fileName);
-            File pdfFileСрусл = new File(Environment.getExternalStorageDirectory() + "/" +
+            File pdfFileIsExit = new File(Environment.getExternalStorageDirectory() + "/" +
                     NAME_FOLDER_SAVED + "/" + fileName);
-            if (pdfFileСрусл.exists()) return null;
+            if (pdfFileIsExit.exists()) return null;
             try {
                 pdfFile.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            FileDownloader.downloadFile(fileUrl, pdfFile);
+
+            int intProgress = 0;
+            try {
+
+                URL url = new URL(fileUrl);
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                //urlConnection.setRequestMethod("GET");
+                //urlConnection.setDoOutput(true);
+                urlConnection.connect();
+                // this will be useful so that you can show a tipical 0-100% progress bar
+
+                InputStream inputStream = urlConnection.getInputStream();
+                FileOutputStream fileOutputStream = new FileOutputStream(pdfFile);
+                long totalSize = urlConnection.getContentLength();
+
+                byte[] buffer = new byte[MEGABYTE];
+                int bufferLength;
+                long total = 0;
+                while ((bufferLength = inputStream.read(buffer)) > 0) {
+                    total += bufferLength;
+                    intProgress = (int) ((total * 100) / totalSize);
+                    publishProgress(intProgress);
+                    fileOutputStream.write(buffer, 0, bufferLength);
+                }
+                fileOutputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//            FileDownloader.downloadFile(fileUrl, pdfFile, this);
+
             return null;
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
+        protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             db.putFlagLoader(name, name);
+            StartActivity.mProgressBar.setVisibility(View.INVISIBLE);
         }
     }
 }

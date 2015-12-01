@@ -18,7 +18,9 @@ import java.net.URL;
 public class FileDownloader implements StaticValues {
 
 
-    public static void downloadFile(String fileUrl, File directory) {
+    public static int intProgress;
+
+    public static void downloadFile(String fileUrl, File directory, GetAndShowFile.DownloadFile downloadFile) {
         try {
 
             URL url = new URL(fileUrl);
@@ -26,6 +28,7 @@ public class FileDownloader implements StaticValues {
             //urlConnection.setRequestMethod("GET");
             //urlConnection.setDoOutput(true);
             urlConnection.connect();
+            // this will be useful so that you can show a tipical 0-100% progress bar
 
             InputStream inputStream = urlConnection.getInputStream();
             FileOutputStream fileOutputStream = new FileOutputStream(directory);
@@ -33,7 +36,10 @@ public class FileDownloader implements StaticValues {
 
             byte[] buffer = new byte[MEGABYTE];
             int bufferLength = 0;
+            long total = 0;
             while ((bufferLength = inputStream.read(buffer)) > 0) {
+                total += bufferLength;
+                intProgress =((int) (total * 100) / totalSize);
                 fileOutputStream.write(buffer, 0, bufferLength);
             }
             fileOutputStream.close();

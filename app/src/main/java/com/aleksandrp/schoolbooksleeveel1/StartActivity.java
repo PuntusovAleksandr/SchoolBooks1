@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
@@ -30,6 +31,8 @@ public class StartActivity extends AppCompatActivity
 
     private DBImpl db;
 
+    public static ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,9 @@ public class StartActivity extends AppCompatActivity
         db.openDb();
 
         setUi();
+        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar.setIndeterminateDrawable(this.getResources()
+                .getDrawable(R.drawable.download_icon));
     }
 
     private void setUi() {

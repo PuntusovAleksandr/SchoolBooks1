@@ -7,6 +7,9 @@
     <color name="colorText">#FF4081</color>
 
     <color name="white">#fff</color>
+    <color name="primary_transparent">#64009688</color>
+    <color name="text_transparent">#45ff4081</color>
+    <color name="transparent">#00000000</color>
 </resources>
 <!--<resources>-->
     <!--<color name="colorPrimary">#3F51B5</color>-->
