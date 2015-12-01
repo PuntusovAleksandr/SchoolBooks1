@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.View;
 
+import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.StartActivity;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
@@ -32,7 +33,6 @@ import java.net.URL;
 public class GetAndShowFile implements StaticValues {
 
     private static Context mContext;
-    private static GetAndShowFile mGerAndShowFile;
     private String name;
     private DBImpl db;
 
@@ -66,7 +66,7 @@ public class GetAndShowFile implements StaticValues {
             }
         } else {
             AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(mContext);
-            mAlertDialog.setTitle("Такого файла нет в библеотеке");
+            mAlertDialog.setTitle(R.string.book_not_found);
             final String finalNameFile = nameFile.substring(0, nameFile.lastIndexOf("."));
             mAlertDialog.setPositiveButton(mContext.getResources().getString(android.R.string.ok),
                     new DialogInterface.OnClickListener() {

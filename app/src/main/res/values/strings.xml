@@ -23,6 +23,7 @@
     <string name="books">Книги</string>
     <string name="gdz">ГДЗ</string>
     <string name="added_in_device">Завантажено</string>
+    <string name="book_not_found">Такой книги нет в библеотекею</string>
 
 
 </resources>
