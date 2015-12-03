@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.view.View;
@@ -48,7 +50,43 @@ public class GetAndShowFile implements StaticValues {
         fileUri = addedPart + fileUri.substring(fileUri.indexOf("=") + 1);
         this.name = nameBook;
         String fileName = nameBook + ".pdf";
-        new DownloadFile().execute(fileUri, fileName);
+        if (isNetworkOnline()) {
+            new DownloadFile().execute(fileUri, fileName);
+        } else {
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
+            mBuilder.setTitle(" ")
+                    .setMessage("Проверте соединение с интернетом и повторите попытку")
+                    .setIcon(R.drawable.wifi_not)
+                    .setCancelable(false)
+                    .setNegativeButton("ОК",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+            AlertDialog alert = mBuilder.create();
+            alert.show();
+        }
+    }
+    public boolean isNetworkOnline() {
+        boolean status=false;
+        try{
+            ConnectivityManager cm = (ConnectivityManager)
+                    mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getNetworkInfo(0);
+            if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
+                status= true;
+            }else {
+                netInfo = cm.getNetworkInfo(1);
+                if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
+                    status= true;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        return status;
+
     }
 
     public void viewFile(String nameFile) {
