@@ -19,6 +19,11 @@
         android:checkableBehavior="single">
 
         <item
+            android:id="@+id/level_all"
+            android:checked="true"
+            android:title="Все предметы" />
+
+        <item
             android:id="@+id/level_1"
             android:checked="true"
             android:title="Англійська мова (книжки, зошити)" />

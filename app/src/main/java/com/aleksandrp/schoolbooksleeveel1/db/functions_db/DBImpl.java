@@ -26,6 +26,8 @@ public class DBImpl implements ValuesDB {
     private ContentValues contentValues;
     private SQLiteDatabase database;
     private Cursor cursor;
+    private ArrayList<Book> allBooksList;
+    private ArrayList<Book> allGDZ;
 
     public DBImpl(Context context) {
         this.context = context;
@@ -70,6 +72,7 @@ public class DBImpl implements ValuesDB {
 
     @NonNull
     public ArrayList<Book> getBooksListByItems(int level) {
+        if (level == 100) return getAllBooksList();
         ArrayList<Book> booksList = new ArrayList<>();
         openDb();
         try {
@@ -96,6 +99,7 @@ public class DBImpl implements ValuesDB {
     }
 
     public ArrayList<Book> getGDZListByItems(int level) {
+        if (level == 100) return getAllGDZ();
         ArrayList<Book> booksList = new ArrayList<>();
         openDb();
         try {
@@ -134,6 +138,58 @@ public class DBImpl implements ValuesDB {
             e.printStackTrace();
         }
         refresh();
+    }
+
+    public ArrayList<Book> getAllBooksList() {
+        ArrayList<Book> booksList = new ArrayList<>();
+        openDb();
+        try {
+            cursor = database.query(TABLE_BOOKS_LEVEL_1, null, null,
+                    null, null, null, COLUMN_NAME_BOOK);
+            if (cursor.moveToFirst()) {
+                do {
+                    String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
+                    int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
+                    String iconStatus = cursor.getString(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
+                    int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
+                    booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.e(ValuesDB.TAG_DB, e.getStackTrace().toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return booksList;
+    }
+
+    public ArrayList<Book> getAllGDZ() {
+        ArrayList<Book> booksList = new ArrayList<>();
+        openDb();
+        try {
+            cursor = database.query(TABLE_GDZ_LEVEL_1, null, null,
+                    null, null, null, COLUMN_NAME_BOOK);
+            if (cursor.moveToFirst()) {
+                do {
+                    String nameBook = cursor.getString(cursor.getColumnIndex(COLUMN_NAME_BOOK));
+                    int smallIcon = cursor.getInt(cursor.getColumnIndex(COLUMN_SMALL_ICON));
+                    String iconStatus = cursor.getString(cursor.getColumnIndex(COLUMN_ICON_STATUS));
+                    String link = cursor.getString(cursor.getColumnIndex(COLUMN_LINK_LOADER));
+                    int item = cursor.getInt(cursor.getColumnIndex(COLUMN_ITEM));
+                    booksList.add(new Book(nameBook, smallIcon, iconStatus, link, item));
+                } while (cursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            Log.e(ValuesDB.TAG_DB, e.getStackTrace().toString());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return booksList;
     }
 
 //    public void removeAllTime() {

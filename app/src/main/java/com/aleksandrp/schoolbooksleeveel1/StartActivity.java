@@ -27,7 +27,7 @@ public class StartActivity extends AppCompatActivity
 
     private GetAndShowFile getAndShowFile;
 
-    public static int selectItem = 1;
+    public static int selectItem = 100;
 
     private DBImpl db;
 
@@ -115,7 +115,11 @@ public class StartActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.level_1) {
+        if (id == R.id.level_all) {
+            if (selectItem != 100) selectItem = 100;
+            updateData();
+            drawer.closeDrawer(GravityCompat.START);
+        } else if (id == R.id.level_1) {
             if (selectItem != 1) selectItem = 1;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
