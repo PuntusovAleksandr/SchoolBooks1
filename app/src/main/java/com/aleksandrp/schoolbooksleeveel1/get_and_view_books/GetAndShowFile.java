@@ -68,20 +68,21 @@ public class GetAndShowFile implements StaticValues {
             alert.show();
         }
     }
+
     public boolean isNetworkOnline() {
-        boolean status=false;
-        try{
+        boolean status = false;
+        try {
             ConnectivityManager cm = (ConnectivityManager)
                     mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getNetworkInfo(0);
-            if (netInfo != null && netInfo.getState()==NetworkInfo.State.CONNECTED) {
-                status= true;
-            }else {
+            if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
+                status = true;
+            } else {
                 netInfo = cm.getNetworkInfo(1);
-                if(netInfo!=null && netInfo.getState()==NetworkInfo.State.CONNECTED)
-                    status= true;
+                if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
+                    status = true;
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -99,6 +100,8 @@ public class GetAndShowFile implements StaticValues {
                 final Intent intent = new Intent(mContext, WorkingClass.class);
                 intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, path);
                 mContext.startActivity(intent);
+                BooksFragment.getInstance().updateList();
+                GDZFragment.getInstance().update();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,8 +118,6 @@ public class GetAndShowFile implements StaticValues {
                         }
                     });
             mAlertDialog.show();
-            BooksFragment.getInstance().updateList();
-            GDZFragment.getInstance().update();
         }
     }
 

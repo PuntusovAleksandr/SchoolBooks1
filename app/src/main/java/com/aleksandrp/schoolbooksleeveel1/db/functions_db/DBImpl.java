@@ -13,13 +13,14 @@ import com.aleksandrp.schoolbooksleeveel1.db.constants.ValuesDB;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
+import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
 import java.util.ArrayList;
 
 /**
  * Created by Aleksandr on 25.09.2015.
  */
-public class DBImpl implements ValuesDB {
+public class DBImpl implements ValuesDB, StaticValues {
 
     private MyDBHelper dbHelper;
     private Context context;
@@ -72,7 +73,7 @@ public class DBImpl implements ValuesDB {
 
     @NonNull
     public ArrayList<Book> getBooksListByItems(int level) {
-        if (level == 100) return getAllBooksList();
+        if (level == DEF_COUNT_ITEMS) return getAllBooksList();
         ArrayList<Book> booksList = new ArrayList<>();
         openDb();
         try {
@@ -99,7 +100,7 @@ public class DBImpl implements ValuesDB {
     }
 
     public ArrayList<Book> getGDZListByItems(int level) {
-        if (level == 100) return getAllGDZ();
+        if (level == DEF_COUNT_ITEMS) return getAllGDZ();
         ArrayList<Book> booksList = new ArrayList<>();
         openDb();
         try {

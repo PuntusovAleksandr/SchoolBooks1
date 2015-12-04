@@ -27,7 +27,7 @@ public class StartActivity extends AppCompatActivity
 
     private GetAndShowFile getAndShowFile;
 
-    public static int selectItem = 100;
+    public static int selectItem = DEF_COUNT_ITEMS;
 
     private DBImpl db;
 

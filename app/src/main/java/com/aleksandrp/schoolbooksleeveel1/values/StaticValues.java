@@ -13,4 +13,6 @@ public interface StaticValues {
 
     int COUNT_FRAGMENTS = 2;
 
+    int DEF_COUNT_ITEMS = 100;
+
 }
