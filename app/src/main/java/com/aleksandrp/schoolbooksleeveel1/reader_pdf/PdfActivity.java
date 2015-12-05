@@ -122,7 +122,6 @@ public class PdfActivity extends AppCompatActivity
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mPdfView.jumpTo(newVal);
                 numberPage.setText(newVal + "");
-                numberPicker.setVisibility(View.INVISIBLE);
             }
         });
     }
