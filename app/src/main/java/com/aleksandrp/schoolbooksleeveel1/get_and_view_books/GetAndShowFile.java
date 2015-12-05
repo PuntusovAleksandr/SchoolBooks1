@@ -15,10 +15,8 @@ import com.aleksandrp.schoolbooksleeveel1.StartActivity;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
-import com.aleksandrp.schoolbooksleeveel1.reader_pdf.WorkingClass;
+import com.aleksandrp.schoolbooksleeveel1.reader_pdf.PdfActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
-
-import net.sf.andpdf.pdfviewer.PdfViewerActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -97,8 +95,8 @@ public class GetAndShowFile implements StaticValues {
         File pdfFile = new File(path);  // -> filename = maven.pdf
         if (pdfFile.exists()) {
             try {
-                final Intent intent = new Intent(mContext, WorkingClass.class);
-                intent.putExtra(PdfViewerActivity.EXTRA_PDFFILENAME, path);
+                Intent intent = new Intent(mContext, PdfActivity.class);
+                intent.putExtra(PATH_FILE, path);
                 mContext.startActivity(intent);
                 BooksFragment.getInstance().updateList();
                 GDZFragment.getInstance().update();

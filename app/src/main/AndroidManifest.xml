@@ -30,8 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".reader_pdf.ShowActivity"/>
-        <activity android:name=".reader_pdf.WorkingClass"/>
+        <activity android:name=".reader_pdf.PdfActivity"></activity>
     </application>
 
 </manifest>
