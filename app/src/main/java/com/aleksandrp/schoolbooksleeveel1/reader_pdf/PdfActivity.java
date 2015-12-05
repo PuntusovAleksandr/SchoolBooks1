@@ -71,7 +71,7 @@ public class PdfActivity extends AppCompatActivity
         leftArrow = (ImageView) findViewById(R.id.iv_left_arrow);
         rightArrow = (ImageView) findViewById(R.id.iv_right_arrow);
         numberPage = (EditText) findViewById(R.id.tv_number_page);
-        numberPage.setText(pageNumberDef + "");
+        numberPage.setText(pageNumberDef + "/" + pageCount);
 
         mPdfView.setOnClickListener(listener);
         zoomMin.setOnClickListener(listener);
@@ -107,7 +107,8 @@ public class PdfActivity extends AppCompatActivity
                     numberPicker.setVisibility(View.VISIBLE);
                     numberPicker.setMinValue(1);
                     numberPicker.setMaxValue(pageCount);
-                    numberPicker.setValue(Integer.parseInt(numberPage.getText().toString()));
+                    String parsString = numberPage.getText().toString();
+                    numberPicker.setValue(Integer.parseInt(parsString.substring(0, parsString.indexOf("/"))));
                     break;
                 default:
                     break;
@@ -121,7 +122,7 @@ public class PdfActivity extends AppCompatActivity
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 mPdfView.jumpTo(newVal);
-                numberPage.setText(newVal + "");
+                numberPage.setText(newVal + "/" + pageCount);
             }
         });
     }
@@ -134,7 +135,7 @@ public class PdfActivity extends AppCompatActivity
      */
     @Override
     public void onPageChanged(int page, int pageCount) {
-        numberPage.setText(page + "");
+        numberPage.setText(page + "/" + pageCount);
         numberPicker.setValue(page);
         pageNumberDef = page;
         this.pageCount = pageCount;
