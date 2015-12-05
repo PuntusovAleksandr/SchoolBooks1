@@ -17,4 +17,6 @@ public interface StaticValues {
     int DEF_COUNT_ITEMS = 100;
     int DEF_NUMBER_PAGE = 1;
 
+    float ZOOM_SIZE = (float) 0.2;
+
 }

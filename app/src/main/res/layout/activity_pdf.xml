@@ -9,28 +9,31 @@
         android:id="@+id/ll_desk"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_pdf_activity"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/cardview_default_elevation"
+        android:padding="@dimen/cardview_default_elevation">
 
 
         <ImageView
             android:id="@+id/iv_zoom_min"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:src="@drawable/zoom_out"
+            android:visibility="invisible"
             android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/iv_left_arrow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:src="@drawable/left_arrow"
             android:layout_weight="1" />
 
         <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/tv_number_page"
             android:textStyle="normal"
             android:layout_weight="4"
@@ -43,7 +46,7 @@
         <ImageView
             android:id="@+id/iv_right_arrow"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:src="@drawable/right_arrow"
             android:layout_weight="1" />
@@ -51,9 +54,10 @@
         <ImageView
             android:id="@+id/iv_zoom_max"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:src="@drawable/zoom_in"
+            android:visibility="invisible"
             android:layout_weight="1" />
 
 
@@ -71,7 +75,8 @@
         android:id="@+id/pdfview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/pdf_view" />
+        android:layout_below="@+id/pdf_view"
+        android:layout_marginBottom="@dimen/cardview_default_elevation"/>
 
     <NumberPicker
         android:id="@+id/numberPicker1"

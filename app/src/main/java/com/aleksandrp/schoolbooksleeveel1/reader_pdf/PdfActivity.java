@@ -27,12 +27,13 @@ public class PdfActivity extends AppCompatActivity
     private String path;
     private PDFView mPdfView;
 
-    private ImageView zoomMin;
-    private ImageView zoomMax;
     private ImageView leftArrow;
     private ImageView rightArrow;
     private EditText numberPage;
     private NumberPicker numberPicker;
+
+    private float SIZE_ZOOM_FINAL;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class PdfActivity extends AppCompatActivity
         setPdf();
         setUi();
         setNumberPicker();
+        SIZE_ZOOM_FINAL = mPdfView.getZoom();
     }
 
     private void setPdf() {
@@ -63,19 +65,21 @@ public class PdfActivity extends AppCompatActivity
         pageCount = mPdfView.getCurrentPage();
     }
 
+    private float getZoom() {
+        if (mPdfView !=null)
+        return mPdfView.getZoom();
+        return  1;
+    }
+
     private void setUi() {
 
         numberPicker = (NumberPicker) findViewById(R.id.numberPicker1);
-        zoomMin = (ImageView) findViewById(R.id.iv_zoom_min);
-        zoomMax = (ImageView) findViewById(R.id.iv_zoom_max);
         leftArrow = (ImageView) findViewById(R.id.iv_left_arrow);
         rightArrow = (ImageView) findViewById(R.id.iv_right_arrow);
         numberPage = (EditText) findViewById(R.id.tv_number_page);
         numberPage.setText(pageNumberDef + "/" + pageCount);
 
         mPdfView.setOnClickListener(listener);
-        zoomMin.setOnClickListener(listener);
-        zoomMax.setOnClickListener(listener);
         leftArrow.setOnClickListener(listener);
         rightArrow.setOnClickListener(listener);
         numberPage.setOnClickListener(listener);
@@ -83,23 +87,17 @@ public class PdfActivity extends AppCompatActivity
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
-
+        float zoom = getZoom();
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.iv_zoom_min:
-
-                    break;
-                case R.id.iv_zoom_max:
-
-                    break;
                 case R.id.iv_left_arrow:
-                    if (pageNumberDef > 1) pageNumberDef -= 1;
+                    if (pageNumberDef > 1) pageNumberDef -= DEF_NUMBER_PAGE;
                     mPdfView.jumpTo(pageNumberDef);
 //                    numberPage.setText(pageNumberDef);
                     break;
                 case R.id.iv_right_arrow:
-                    if (pageNumberDef < pageCount) pageNumberDef += 1;
+                    if (pageNumberDef < pageCount) pageNumberDef += DEF_NUMBER_PAGE;
                     mPdfView.jumpTo(pageNumberDef);
 //                    numberPage.setText(pageNumberDef);
                     break;
@@ -152,4 +150,5 @@ public class PdfActivity extends AppCompatActivity
         Toast.makeText(PdfActivity.this, "loaded " + nPages + " pages", Toast.LENGTH_SHORT).show();
 
     }
+
 }
