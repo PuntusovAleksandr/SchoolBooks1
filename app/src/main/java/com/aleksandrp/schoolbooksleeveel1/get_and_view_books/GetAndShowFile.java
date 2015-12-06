@@ -39,7 +39,7 @@ public class GetAndShowFile implements StaticValues {
 
     public GetAndShowFile(Context context) {
         this.mContext = context;
-        db = new DBImpl(mContext);
+        db = DBImpl.getInstanceDB(mContext);
     }
 
 

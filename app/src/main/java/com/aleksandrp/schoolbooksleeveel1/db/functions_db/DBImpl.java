@@ -27,11 +27,19 @@ public class DBImpl implements ValuesDB, StaticValues {
     private ContentValues contentValues;
     private SQLiteDatabase database;
     private Cursor cursor;
-    private ArrayList<Book> allBooksList;
-    private ArrayList<Book> allGDZ;
 
-    public DBImpl(Context context) {
+    private static DBImpl db;
+
+    private DBImpl(Context context) {
         this.context = context;
+        openDb();
+    }
+
+    public static DBImpl getInstanceDB(Context context) {
+        if (db == null) {
+            db = new DBImpl(context);
+        }
+        return db;
     }
 
     public synchronized void openDb() {

@@ -43,7 +43,7 @@ public class BooksFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        db = new DBImpl(getActivity());
+        db = DBImpl.getInstanceDB(getActivity());
         View view = inflater.inflate(R.layout.fragment_books, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_books);
@@ -64,7 +64,6 @@ public class BooksFragment extends Fragment {
     }
 
     private ArrayList<Book> getListItemsByBooks() {
-        if (db == null) db = new DBImpl(getActivity());
         return db.getBooksListByItems(StartActivity.selectItem);
     }
 

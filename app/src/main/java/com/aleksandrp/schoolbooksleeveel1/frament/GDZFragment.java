@@ -43,7 +43,7 @@ public class GDZFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        db = new DBImpl(getActivity());
+        db = DBImpl.getInstanceDB(getActivity());
         View view = inflater.inflate(R.layout.fragment_gdz, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_gdz);
@@ -65,7 +65,6 @@ public class GDZFragment extends Fragment {
     }
 
     private ArrayList<Book> getListSchoolItems() {
-        if (db == null) db = new DBImpl(getActivity());
         return db.getGDZListByItems(StartActivity.selectItem);
     }
 

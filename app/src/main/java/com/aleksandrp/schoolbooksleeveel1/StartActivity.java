@@ -39,8 +39,7 @@ public class StartActivity extends AppCompatActivity
         setContentView(R.layout.activity_start);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        db = new DBImpl(StartActivity.this);
-        db.openDb();
+        db =DBImpl.getInstanceDB(StartActivity.this);
 
         setUi();
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
