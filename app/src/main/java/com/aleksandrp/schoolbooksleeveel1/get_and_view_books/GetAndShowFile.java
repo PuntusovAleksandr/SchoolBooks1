@@ -53,7 +53,7 @@ public class GetAndShowFile implements StaticValues {
         } else {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
             mBuilder.setTitle(" ")
-                    .setMessage("Проверте соединение с интернетом и повторите попытку")
+                    .setMessage(R.string.can_network_connection)
                     .setIcon(R.drawable.wifi_not)
                     .setCancelable(false)
                     .setNegativeButton("ОК",

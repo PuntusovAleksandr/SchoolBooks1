@@ -12,6 +12,7 @@
     <string name="gdz">ГДЗ</string>
     <string name="added_in_device">Загружено</string>
     <string name="book_not_found">Такой книги нет в библеотекею</string>
+    <string name="can_network_connection">Проверте соединение с интернетом и повторите попытку</string>
 
 
     <string-array name="insert_books" >
