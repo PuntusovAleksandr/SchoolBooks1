@@ -95,35 +95,34 @@ public interface ValuesDB {
             "('Французька мова (Чумак, Кривошеєва) 1 клас', 0, 0, 'zzzzzz');";
 
 
-    String[] massQueryBook ={
+    String[] massQueryBook = {
             "('Англійська мова (Калініна, Самойлюкевич) 1 клас', " + R.drawable.anglkalinina + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyRWpONkJaSWx3Q1E', 1)",
-    "('Англійська мова (Карп’юк) 1 клас', " + R.drawable.anglkarpuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyV2RweElaRHhwUUE', 1)",
-    "('Англійська мова (Несвіт) 1 клас', " + R.drawable.anglnesvit + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyZmhLNXM2R3FFeXM', 1)",
-    "('Англійська мова (Ростоцька, Карп’юк) 1 клас', " + R.drawable.anglrostockaja + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiydXdiTW1HZklpbkU', 1)",
-    "('Англійська мова Зошит для письма (Вітушинська, Косован) 1 клас', " + R.drawable.anglzoshvitushunskaja + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyRnZMa2dScmZ4MEE', 1)",
-    "('Англійська мова Робочий зошит (Карп’юк) 1 клас', " + R.drawable.anglzoshkarpuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyOUFPNlcySW1Telk', 1)",
-    "('Англійська мова Робочий зошит (Несвіт) 1 клас', " + R.drawable.anglzoshnesvit + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyUEhmVFQ4Ql9icFk', 1)",
-    "('Буквар (Вашуленко) 1 клас', " + R.drawable.bukvar_vashulenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyMzhJdWRrVE5tbnc', 2)",
-    "('Буквар (Захарiйчукб Науменко) 1 клас', " + R.drawable.bukvar_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyZk5hU3FaMjlwRmM', 2)",
-    "('Математика (Богданович, Лишенко) 1 клас', " + R.drawable.matem_bogdanov + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiySE5HLU1ITlprdFk', 3)",
-    "('Математика (Заїка, Тарнавська) 1 клас', " + R.drawable.matem_zaika + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiybG5RLXFBZ2d0cVE', 3)",
-    "('Математика (Рівкінд, Оляницька) 1 клас', " + R.drawable.matem_rivkin + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyUjBjRVRzSEstSmM', 3)",
-    "('Музичне мистецтво (Лобова) 1 клас', " + R.drawable.music + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyYllmX0Y3RXhCSnc', 4)",
-    "('Німецька мова (Паршикова, Мельничук/, Савченко, Сидоренко, Горбач) 1 клас', " + R.drawable.nimec_parshukov + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyVVRtelBHVmxrd0k', 5)",
-    "('Німецька мова (Скоропад) 1 клас', " + R.drawable.nimec_skoropad + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiycHlqU05TSXBWYlU', 5)",
-    "('Мистецтво (Масол, Гайдамака, Очеретяна) 1 клас', " + R.drawable.mist_masol + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyOVJZX1p6cllkMms', 6)",
-    "('Образотворче мистецтво (Калініченко, Сергієнко) 1 клас', " + R.drawable.mist_kalinichenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyY3RyX2ZzNDJBcnM', 6)",
-    "('Основи здоров`я (Гнатюк) 1 клас', " + R.drawable.zdor_gnatuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyRjRTUmVLOXJQWEU', 7)",
-    "('Основи здоров’я (Бех, Воронцова, Пономаренко, Страшко) 1 клас', " + R.drawable.zdorov_beh + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyTUROT1RBS291UkE', 7)",
-    "('Природознавство (Гільберг, Сак) 1 клас', " + R.drawable.priroda_galbert + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiySVV6a3dlRGRUQzg', 8)",
-    "('Природознавство (Грущинська) 1 клас', " + R.drawable.priroda_grushunska + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyajJLWF9RVV81NVE', 8)",
-    "('Російська мова (Лапшина, Зорька) 1 клас', " + R.drawable.rus_lapshuna + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyMk4tZ3NRY1lzMm8', 9)",
-    "('Російська мова (Статівка, Самонова) 1 клас', " + R.drawable.rus_stativka + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyb3BiYVd5OWEtaDg', 9)",
-    "('Трудове навчання (Сидоренко, Котелянець) 1 клас', " + R.drawable.trud + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyaDZOSDU3RC1vdlE', 10)",
-    "('Українська мова (Захарійчук) 1 клас', " + R.drawable.ukr_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyS3drQ3ZEY1dsLVE', 11)",
-    "('Французька мова (Клименко) 1 клас', " + R.drawable.fran_klimenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyVGZJR200eXdLTUE', 12)",
-    "('Французька мова (Чумак, Кривошеєва) 1 клас', " + R.drawable.franc_cumak + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyX0FOcFJNOUZkM2c', 12)"
-
-};
+            "('Англійська мова (Карп’юк) 1 клас', " + R.drawable.anglkarpuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyV2RweElaRHhwUUE', 1)",
+            "('Англійська мова (Несвіт) 1 клас', " + R.drawable.anglnesvit + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyZmhLNXM2R3FFeXM', 1)",
+            "('Англійська мова (Ростоцька, Карп’юк) 1 клас', " + R.drawable.anglrostockaja + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiydXdiTW1HZklpbkU', 1)",
+            "('Англійська мова Зошит для письма (Вітушинська, Косован) 1 клас', " + R.drawable.anglzoshvitushunskaja + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyRnZMa2dScmZ4MEE', 1)",
+            "('Англійська мова Робочий зошит (Карп’юк) 1 клас', " + R.drawable.anglzoshkarpuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyOUFPNlcySW1Telk', 1)",
+            "('Англійська мова Робочий зошит (Несвіт) 1 клас', " + R.drawable.anglzoshnesvit + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyUEhmVFQ4Ql9icFk', 1)",
+            "('Буквар (Вашуленко) 1 клас', " + R.drawable.bukvar_vashulenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyMzhJdWRrVE5tbnc', 2)",
+            "('Буквар (Захарiйчукб Науменко) 1 клас', " + R.drawable.bukvar_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyZk5hU3FaMjlwRmM', 2)",
+            "('Математика (Богданович, Лишенко) 1 клас', " + R.drawable.matem_bogdanov + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiySE5HLU1ITlprdFk', 3)",
+            "('Математика (Заїка, Тарнавська) 1 клас', " + R.drawable.matem_zaika + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiybG5RLXFBZ2d0cVE', 3)",
+            "('Математика (Рівкінд, Оляницька) 1 клас', " + R.drawable.matem_rivkin + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyUjBjRVRzSEstSmM', 3)",
+            "('Музичне мистецтво (Лобова) 1 клас', " + R.drawable.music + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyYllmX0Y3RXhCSnc', 4)",
+            "('Німецька мова (Паршикова, Мельничук/, Савченко, Сидоренко, Горбач) 1 клас', " + R.drawable.nimec_parshukov + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyVVRtelBHVmxrd0k', 5)",
+            "('Німецька мова (Скоропад) 1 клас', " + R.drawable.nimec_skoropad + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiycHlqU05TSXBWYlU', 5)",
+            "('Мистецтво (Масол, Гайдамака, Очеретяна) 1 клас', " + R.drawable.mist_masol + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyOVJZX1p6cllkMms', 6)",
+            "('Образотворче мистецтво (Калініченко, Сергієнко) 1 клас', " + R.drawable.mist_kalinichenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyY3RyX2ZzNDJBcnM', 6)",
+            "('Основи здоров`я (Гнатюк) 1 клас', " + R.drawable.zdor_gnatuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyRjRTUmVLOXJQWEU', 7)",
+            "('Основи здоров’я (Бех, Воронцова, Пономаренко, Страшко) 1 клас', " + R.drawable.zdorov_beh + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyTUROT1RBS291UkE', 7)",
+            "('Природознавство (Гільберг, Сак) 1 клас', " + R.drawable.priroda_galbert + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiySVV6a3dlRGRUQzg', 8)",
+            "('Природознавство (Грущинська) 1 клас', " + R.drawable.priroda_grushunska + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyajJLWF9RVV81NVE', 8)",
+            "('Російська мова (Лапшина, Зорька) 1 клас', " + R.drawable.rus_lapshuna + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyMk4tZ3NRY1lzMm8', 9)",
+            "('Російська мова (Статівка, Самонова) 1 клас', " + R.drawable.rus_stativka + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyb3BiYVd5OWEtaDg', 9)",
+            "('Трудове навчання (Сидоренко, Котелянець) 1 клас', " + R.drawable.trud + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyaDZOSDU3RC1vdlE', 10)",
+            "('Українська мова (Захарійчук) 1 клас', " + R.drawable.ukr_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyS3drQ3ZEY1dsLVE', 11)",
+            "('Французька мова (Клименко) 1 клас', " + R.drawable.fran_klimenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyVGZJR200eXdLTUE', 12)",
+            "('Французька мова (Чумак, Кривошеєва) 1 клас', " + R.drawable.franc_cumak + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyX0FOcFJNOUZkM2c', 12)"
+    };
 
 }
