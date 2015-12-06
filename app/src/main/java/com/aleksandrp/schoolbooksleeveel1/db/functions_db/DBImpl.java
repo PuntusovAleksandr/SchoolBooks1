@@ -34,7 +34,7 @@ public class DBImpl implements ValuesDB, StaticValues {
         this.context = context;
     }
 
-    public void openDb() {
+    public synchronized void openDb() {
         if (dbHelper == null) {
             dbHelper = new MyDBHelper(context);
             database = dbHelper.getWritableDatabase();
