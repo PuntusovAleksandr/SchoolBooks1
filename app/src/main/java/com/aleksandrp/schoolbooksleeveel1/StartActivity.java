@@ -1,6 +1,7 @@
 package com.aleksandrp.schoolbooksleeveel1;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
+import com.aleksandrp.schoolbooksleeveel1.social_networks.SocialNetworksActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
 public class StartActivity extends AppCompatActivity
@@ -167,7 +169,9 @@ public class StartActivity extends AppCompatActivity
             updateData();
             drawer.closeDrawer(GravityCompat.START);
         }else if (id == R.id.nav_share) {
-
+            Intent intent = new Intent(StartActivity.this, SocialNetworksActivity.class);
+            startActivity(intent);
+            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_send) {
 
         }
