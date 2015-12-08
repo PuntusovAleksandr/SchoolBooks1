@@ -3,6 +3,9 @@ package com.aleksandrp.schoolbooksleeveel1;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,6 +15,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
 
@@ -22,6 +27,9 @@ import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
 import com.aleksandrp.schoolbooksleeveel1.social_networks.SocialNetworksActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class StartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -41,12 +49,33 @@ public class StartActivity extends AppCompatActivity
         setContentView(R.layout.activity_start);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        db =DBImpl.getInstanceDB(StartActivity.this);
-
         setUi();
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mProgressBar.setIndeterminateDrawable(this.getResources()
                 .getDrawable(R.drawable.download_icon));
+        printHashKey();
+    }
+
+
+    // for social network FACEBOOK
+    public void printHashKey() {
+        try {
+            PackageInfo info = getApplicationContext().getPackageManager().getPackageInfo("com.aleksandrp.schoolbooksleeveel1",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("HASH KEY:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+        } catch (NoSuchAlgorithmException e) {
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        db = DBImpl.getInstanceDB(StartActivity.this);
     }
 
     private void setUi() {
@@ -168,7 +197,7 @@ public class StartActivity extends AppCompatActivity
             if (selectItem != 12) selectItem = 12;
             updateData();
             drawer.closeDrawer(GravityCompat.START);
-        }else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
             Intent intent = new Intent(StartActivity.this, SocialNetworksActivity.class);
             startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);

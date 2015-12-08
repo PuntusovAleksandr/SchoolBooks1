@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Школьные книги 1 класс</string>
+    <string name="app_name">1 класс Школьные книги</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,6 +14,15 @@
     <string name="book_not_found">Такой книги нет в библеотекею</string>
     <string name="can_network_connection">Проверте соединение с интернетом и повторите попытку</string>
     <string name="text_in_social">\tПомогите нам сделать проект популярным. \n\nПоделитесь им в социальных сетях.</string>
+
+
+
+
+    <string name="twiter_api_key">1GjqwBNG2B2LGBE1EUdgYpeAm</string>
+    <string name="twiter_ip_seecret">LfusiPUdxMjBG2JOPnIkUMReMFdbcBYaPT3C41kErQb5yD6yKi</string>
+    <string name="linkedin_api_key">77ev9gwz6niokb</string>
+    <string name="linkedin_ip_seecret">OfWFjU6nSi0VHtUM</string>
+    <string name="vc_api_key">EAy1gP1qTCP3zVpdNNQS</string>
 
 
     <string-array name="insert_books">
