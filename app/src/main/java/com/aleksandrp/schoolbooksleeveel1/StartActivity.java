@@ -1,11 +1,14 @@
 package com.aleksandrp.schoolbooksleeveel1;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -19,6 +22,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
@@ -135,8 +139,10 @@ public class StartActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+        finish();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -199,10 +205,14 @@ public class StartActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_share) {
             Intent intent = new Intent(StartActivity.this, SocialNetworksActivity.class);
-            startActivity(intent);
+            Bundle bndlanimation =
+                    ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.anime_to,
+                            R.anim.anime_from).toBundle();
+            startActivity(intent, bndlanimation);
+//            startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_send) {
-
+            Toast.makeText(StartActivity.this, "Этот раздел нахоится в разработке", Toast.LENGTH_SHORT).show();
         }
         return true;
     }

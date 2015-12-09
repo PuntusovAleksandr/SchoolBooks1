@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
@@ -85,7 +84,6 @@ public class BookRecyclerAdapter extends
         holder.mSmallIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Link book :: " + link, Toast.LENGTH_SHORT).show();
                 ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
                 contextDialog.show();
             }

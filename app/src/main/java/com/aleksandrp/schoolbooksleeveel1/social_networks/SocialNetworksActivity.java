@@ -37,6 +37,14 @@ public class SocialNetworksActivity extends AppCompatActivity {
         ibGooglePlues.setOnClickListener(listener);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        overridePendingTransition(R.anim.anime_to, R.anim.anime_from);
+    }
+
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -53,7 +61,6 @@ public class SocialNetworksActivity extends AppCompatActivity {
                     break;
                 case R.id.ib_vcontacte:
                     break;
-
             }
         }
     };
