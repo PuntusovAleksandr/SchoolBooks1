@@ -48,19 +48,24 @@ public class PdfActivity extends AppCompatActivity
         Intent intent = getIntent();
         path = intent.getStringExtra(PATH_FILE);
         File pdfFile = new File(path);
-        mPdfView = (PDFView) findViewById(R.id.pdfview);
-        mPdfView.fromFile(pdfFile)
-                .defaultPage(pageNumberDef)
-                .swipeVertical(true)
-                .showMinimap(true)
-                .enableSwipe(true)
-                .onLoad(this)
-                .onPageChange(this)
-                .load();
+        try {
+            mPdfView = (PDFView) findViewById(R.id.pdfview);
+            mPdfView.fromFile(pdfFile)
+                    .defaultPage(pageNumberDef)
+                    .swipeVertical(true)
+                    .showMinimap(true)
+                    .enableSwipe(true)
+                    .onLoad(this)
+                    .onPageChange(this)
+                    .load();
 
         title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
         setTitle(title);
         pageCount = mPdfView.getCurrentPage();
+        } catch (Exception e) {
+            Toast.makeText(PdfActivity.this, "Reload file", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
     private void setUi() {

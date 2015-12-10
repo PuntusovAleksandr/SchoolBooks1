@@ -13,8 +13,6 @@ import android.view.View;
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.StartActivity;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
-import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
-import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.reader_pdf.PdfActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -98,8 +96,8 @@ public class GetAndShowFile implements StaticValues {
                 Intent intent = new Intent(mContext, PdfActivity.class);
                 intent.putExtra(PATH_FILE, path);
                 mContext.startActivity(intent);
-                BooksFragment.getInstance().updateList();
-                GDZFragment.getInstance().update();
+//                BooksFragment.getInstance().updateList();
+//                GDZFragment.getInstance().update();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -169,9 +167,7 @@ public class GetAndShowFile implements StaticValues {
                     fileOutputStream.write(buffer, 0, bufferLength);
                 }
                 fileOutputStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
+            } catch (FileNotFoundException | MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();

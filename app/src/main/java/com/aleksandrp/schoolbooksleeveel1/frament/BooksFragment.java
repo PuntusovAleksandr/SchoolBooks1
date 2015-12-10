@@ -24,7 +24,7 @@ public class BooksFragment extends Fragment {
 
     private DBImpl db;
     private RecyclerView recyclerView;
-    public BookRecyclerAdapter sRecyclerViewAdapter;
+//    public BookRecyclerAdapter sRecyclerViewAdapter;
 
     private static BooksFragment fragment;
 
@@ -58,8 +58,8 @@ public class BooksFragment extends Fragment {
     }
 
     public void updateList() {
-        if (sRecyclerViewAdapter != null) sRecyclerViewAdapter = null;
-        sRecyclerViewAdapter = new BookRecyclerAdapter(getListItemsByBooks(), getActivity());
+        BookRecyclerAdapter sRecyclerViewAdapter =
+                new BookRecyclerAdapter(getListItemsByBooks(), getActivity());
         recyclerView.setAdapter(sRecyclerViewAdapter);
     }
 
