@@ -176,9 +176,6 @@ public class GetAndShowFile implements StaticValues {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-//            FileDownloader.downloadFile(fileUrl, pdfFile, this);
-
             return null;
         }
 
