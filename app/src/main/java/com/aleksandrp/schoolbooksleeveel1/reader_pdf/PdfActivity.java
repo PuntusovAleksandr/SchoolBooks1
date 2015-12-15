@@ -48,24 +48,27 @@ public class PdfActivity extends AppCompatActivity
         Intent intent = getIntent();
         path = intent.getStringExtra(PATH_FILE);
         File pdfFile = new File(path);
-        try {
-            mPdfView = (PDFView) findViewById(R.id.pdfview);
-            mPdfView.fromFile(pdfFile)
-                    .defaultPage(pageNumberDef)
-                    .swipeVertical(true)
-                    .showMinimap(true)
-                    .enableSwipe(true)
-                    .onLoad(this)
-                    .onPageChange(this)
-                    .load();
+        if (pdfFile.exists()) {
+            try {
+                mPdfView = (PDFView) findViewById(R.id.pdfview);
+                mPdfView.fromFile(pdfFile)
+                        .defaultPage(pageNumberDef)
+                        .swipeVertical(true)
+                        .showMinimap(true)
+                        .enableSwipe(true)
+                        .onLoad(this)
+                        .onPageChange(this);
+                mPdfView.loadPages();
 
-        title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
-        setTitle(title);
-        pageCount = mPdfView.getCurrentPage();
-        } catch (Exception e) {
-            Toast.makeText(PdfActivity.this, "Reload file", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
+                title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
+                setTitle(title);
+                pageCount = mPdfView.getCurrentPage();
+            } catch (Exception e) {
+                Toast.makeText(PdfActivity.this, "Reload file", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
+        } else Toast.makeText(PdfActivity.this, "File поврежден", Toast.LENGTH_SHORT).show();
+
     }
 
     private void setUi() {

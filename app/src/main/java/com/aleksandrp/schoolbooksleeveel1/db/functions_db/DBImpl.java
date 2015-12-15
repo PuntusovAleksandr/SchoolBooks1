@@ -54,7 +54,7 @@ public class DBImpl implements ValuesDB, StaticValues {
 
     public void close() {
         if (dbHelper != null) dbHelper.close();
-        Log.i(ValuesDB.TAG_DB, "dbHelper isxlosed");
+        Log.i(ValuesDB.TAG_DB, "dbHelper isClosed");
     }
 
     private void refresh() {

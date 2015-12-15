@@ -138,8 +138,8 @@ public class StartActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            finish();
         }
-        finish();
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -224,7 +224,7 @@ public class StartActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         db.close();
+        super.onDestroy();
     }
 }
