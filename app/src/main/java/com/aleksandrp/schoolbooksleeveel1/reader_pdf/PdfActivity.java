@@ -57,8 +57,8 @@ public class PdfActivity extends AppCompatActivity
                         .showMinimap(true)
                         .enableSwipe(true)
                         .onLoad(this)
-                        .onPageChange(this);
-                mPdfView.loadPages();
+                        .onPageChange(this)
+                        .load();
 
                 title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
                 setTitle(title);

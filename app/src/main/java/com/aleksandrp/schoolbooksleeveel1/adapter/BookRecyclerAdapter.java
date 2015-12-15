@@ -28,8 +28,6 @@ public class BookRecyclerAdapter extends
     private ArrayList<Book> listItems;
     private Context context;
 
-    private String link;
-
     private GetAndShowFile getFile;
 
 
@@ -63,7 +61,7 @@ public class BookRecyclerAdapter extends
     }
 
     @Override
-    public void onBindViewHolder(TimeViewHolder holder, int position) {
+    public void onBindViewHolder(TimeViewHolder holder, final int position) {
         holder.mTvName.setText(listItems.get(position).getNameBook());
         final int resSmall = listItems.get(position).getSmallIcon();
         String resStatua = listItems.get(position).getIconStatus();
@@ -78,12 +76,11 @@ public class BookRecyclerAdapter extends
             holder.mIconStatus.setImageResource(R.drawable.download_pdf_70x70);
             holder.mIconStatus.setEnabled(true);
         }
-        link = listItems.get(position).getLinkDownload();
 
-        final String nameBook = listItems.get(position).getNameBook();
         holder.mSmallIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nameBook = listItems.get(position).getNameBook();
                 ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
                 contextDialog.show();
             }
@@ -91,6 +88,8 @@ public class BookRecyclerAdapter extends
         holder.mIconStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String link = listItems.get(position).getLinkDownload();
+                String nameBook = listItems.get(position).getNameBook();
                 getFile = new GetAndShowFile(context);
                 getFile.downloadFileFromReppositoria(link, nameBook);
             }
@@ -99,6 +98,7 @@ public class BookRecyclerAdapter extends
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nameBook = listItems.get(position).getNameBook();
                 getFile = new GetAndShowFile(context);
                 getFile.viewFile(nameBook);
             }
