@@ -52,7 +52,7 @@ public class StartActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        db = DBImpl.getInstanceDB(StartActivity.this);
         setUi();
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mProgressBar.setIndeterminateDrawable(this.getResources()
@@ -74,12 +74,6 @@ public class StartActivity extends AppCompatActivity
         } catch (PackageManager.NameNotFoundException e) {
         } catch (NoSuchAlgorithmException e) {
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        db = DBImpl.getInstanceDB(StartActivity.this);
     }
 
     private void setUi() {
@@ -224,7 +218,14 @@ public class StartActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        db.close();
         super.onDestroy();
+        closeDB();
+    }
+
+    private void closeDB() {
+        if (db != null) System.out.println("DB not null 111111" + db.toString());
+        db.close();
+        db = null;
+        if (db != null) System.out.println("DB not null 222222" + db.toString());
     }
 }
