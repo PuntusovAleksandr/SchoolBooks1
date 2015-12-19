@@ -13,6 +13,7 @@ import android.view.View;
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.StartActivity;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
+import com.aleksandrp.schoolbooksleeveel1.params.StaticParams;
 import com.aleksandrp.schoolbooksleeveel1.reader_pdf.PdfActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
@@ -123,6 +124,7 @@ public class GetAndShowFile implements StaticValues {
         protected void onPreExecute() {
             super.onPreExecute();
             StartActivity.mProgressBar.setVisibility(View.VISIBLE);
+            StaticParams.setEnableButtonLoadFile(true);
         }
 
         @Override
@@ -185,6 +187,7 @@ public class GetAndShowFile implements StaticValues {
             super.onPostExecute(aVoid);
             db.putFlagLoader(name, name);
             StartActivity.mProgressBar.setVisibility(View.INVISIBLE);
+            StaticParams.setEnableButtonLoadFile(false);
         }
     }
 }

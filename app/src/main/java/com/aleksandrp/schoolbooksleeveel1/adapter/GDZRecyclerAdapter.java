@@ -21,6 +21,7 @@ import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialog;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
+import com.aleksandrp.schoolbooksleeveel1.params.StaticParams;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
 import java.io.File;
@@ -92,28 +93,34 @@ public class GDZRecyclerAdapter extends
         holder.mSmallIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameBook = book.getNameBook();
-                ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
-                contextDialog.show();
+                if (!StaticParams.isEnableButtonLoadFile()) {
+                    String nameBook = book.getNameBook();
+                    ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
+                    contextDialog.show();
+                }
             }
         });
 
         holder.mIconStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String link = book.getLinkDownload();
-                String nameBook = book.getNameBook();
-                getFile = new GetAndShowFile(context);
-                getFile.downloadFileFromReppositoria(link, nameBook);
+                if (!StaticParams.isEnableButtonLoadFile()) {
+                    String link = book.getLinkDownload();
+                    String nameBook = book.getNameBook();
+                    getFile = new GetAndShowFile(context);
+                    getFile.downloadFileFromReppositoria(link, nameBook);
+                }
             }
         });
 
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameBook = book.getNameBook();
-                getFile = new GetAndShowFile(context);
-                getFile.viewFile(nameBook);
+                if (!StaticParams.isEnableButtonLoadFile()) {
+                    String nameBook = book.getNameBook();
+                    getFile = new GetAndShowFile(context);
+                    getFile.viewFile(nameBook);
+                }
             }
         });
 
@@ -121,23 +128,25 @@ public class GDZRecyclerAdapter extends
             @Override
             public boolean onLongClick(View v) {
                 if (!holder.mIconStatus.isEnabled()) {
-                    ad = new AlertDialog.Builder(context);
-                    ad.setTitle("Удаление файла книги!");  // заголовок
-                    ad.setMessage(context.getString(R.string.want_like_delete_book) +
-                            book.getNameBook() + "?"); // сообщение
-                    ad.setIcon(android.R.drawable.ic_menu_info_details);
-                    ad.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int arg1) {
-                            deleteFileBook(book);
-                        }
-                    });
-                    ad.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    ad.show();
+                    if (!StaticParams.isEnableButtonLoadFile()) {
+                        ad = new AlertDialog.Builder(context);
+                        ad.setTitle("Удаление файла книги!");  // заголовок
+                        ad.setMessage(context.getString(R.string.want_like_delete_book) +
+                                book.getNameBook() + "?"); // сообщение
+                        ad.setIcon(android.R.drawable.ic_menu_info_details);
+                        ad.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int arg1) {
+                                deleteFileBook(book);
+                            }
+                        });
+                        ad.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        ad.show();
+                    }
                 }
                 return true;
             }
@@ -165,7 +174,6 @@ public class GDZRecyclerAdapter extends
     }
 
 
-
     @Override
     public int getItemCount() {
         return listItems.size();
@@ -175,6 +183,7 @@ public class GDZRecyclerAdapter extends
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {
 
