@@ -75,7 +75,7 @@ public interface ValuesDB {
     };
 
     String[] INSERT_GDZ_IN_DB = {
-            "('Англійська мова 1 клас Карп’юк', " + R.drawable.logo + ", 'https://drive.google.com/open?id=0B2uU8xteWwsfLTVqeWVpNzFSQWs', 1)",
+            "('Англійська мова 1 клас Карп’юк', " + R.drawable.logo + ", 'https://drive.google.com/open?id=0B2uU8xteWwsfZUo5TkVzZVdlMnc', 1)",
             "('Англійська мова 1 клас Несвіт', " + R.drawable.logo + ", 'https://drive.google.com/open?id=0B2uU8xteWwsfX3g5eUVRVVJFOU0', 1)",
             "('Англійська мова 1 клас Ростоцька', " + R.drawable.logo + ", 'https://drive.google.com/open?id=0B2uU8xteWwsfQ2pEMkt4WldicW8', 1)",
             "('Буквар 1 клас Захарійчук', " + R.drawable.logo + ", 'https://drive.google.com/open?id=0B2uU8xteWwsfYzYwOE5CSVNfQlE', 2)",

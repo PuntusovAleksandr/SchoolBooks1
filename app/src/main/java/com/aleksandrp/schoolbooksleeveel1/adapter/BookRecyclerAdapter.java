@@ -74,12 +74,12 @@ public class BookRecyclerAdapter extends
 
         holder.mTvName.setText(book.getNameBook());
         final int resSmall = book.getSmallIcon();
-        String resStatua = book.getIconStatus();
+        String resStatus = book.getIconStatus();
         if (resSmall != 0) {
             holder.mSmallIcon.setImageBitmap(decodeSampledBitmapFromResource(context.getResources(),
                     resSmall, 100, 100));
         }
-        if (!resStatua.equals("0")) {
+        if (!resStatus.equals("0")) {
             holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
             holder.mIconStatus.setEnabled(false);
         } else {

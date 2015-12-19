@@ -153,6 +153,16 @@ public class DBImpl implements ValuesDB, StaticValues {
         } catch (SQLiteException e) {
             e.printStackTrace();
         }
+        try {
+            contentValues = new ContentValues();
+            if (key.equals("0")) {
+                contentValues.put(COLUMN_ICON_STATUS, key);
+            } else
+                contentValues.put(COLUMN_ICON_STATUS, name);
+            int row = database.update(TABLE_GDZ_LEVEL_1, contentValues, COLUMN_NAME_BOOK + " = '" + name + "';", null);
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        }
         refresh();
     }
 
