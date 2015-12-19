@@ -136,7 +136,7 @@ public class GetAndShowFile implements StaticValues {
             File pdfFile = new File(folder, fileName);
             File pdfFileIsExit = new File(Environment.getExternalStorageDirectory() + "/" +
                     NAME_FOLDER_SAVED + "/" + fileName);
-            if (pdfFileIsExit.exists()) return null;
+            if (pdfFileIsExit.exists()) pdfFile.delete();
             try {
                 pdfFile.createNewFile();
             } catch (IOException e) {
