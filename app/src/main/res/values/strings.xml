@@ -23,6 +23,10 @@
     <string name="linkedin_api_key">77ev9gwz6niokb</string>
     <string name="linkedin_ip_seecret">OfWFjU6nSi0VHtUM</string>
     <string name="vc_api_key">EAy1gP1qTCP3zVpdNNQS</string>
+    <string name="want_like_delete_book">"\nВы хотите удалить книгу
+        \n\t"</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 
     <string-array name="insert_books">

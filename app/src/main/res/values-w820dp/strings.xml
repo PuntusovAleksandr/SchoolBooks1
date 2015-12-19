@@ -3,4 +3,8 @@
     <string name="book_not_found">Такой книги нет в библеотекею</string>
     <string name="can_network_connection">Проверте соединение с интернетом и повторите попытку</string>
     <string name="text_in_social">tПомогите нам сделать проект популярным. \n\nПоделитесь им в социальных сетях.</string>
+    <string name="want_like_delete_book">"\nВы хотите удалить книгу
+        \n\t"</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>

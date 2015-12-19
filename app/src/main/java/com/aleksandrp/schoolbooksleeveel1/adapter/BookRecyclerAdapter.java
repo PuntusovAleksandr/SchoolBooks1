@@ -1,9 +1,13 @@
 package com.aleksandrp.schoolbooksleeveel1.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Environment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,25 +15,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
+import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialog;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
+import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
  * Created by Aleksandr on 19.11.2015.
  */
 public class BookRecyclerAdapter extends
-        RecyclerView.Adapter<BookRecyclerAdapter.TimeViewHolder> {
+        RecyclerView.Adapter<BookRecyclerAdapter.TimeViewHolder>
+        implements StaticValues {
 
     private ArrayList<Book> listItems;
     private Context context;
-
     private GetAndShowFile getFile;
-
+    private AlertDialog.Builder ad;
 
     public BookRecyclerAdapter(ArrayList<Book> listItems, Context context) {
         this.listItems = listItems;
@@ -57,14 +65,16 @@ public class BookRecyclerAdapter extends
     @Override
     public TimeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        return new TimeViewHolder(view);
+        return (new TimeViewHolder(view));
     }
 
     @Override
-    public void onBindViewHolder(TimeViewHolder holder, final int position) {
-        holder.mTvName.setText(listItems.get(position).getNameBook());
-        final int resSmall = listItems.get(position).getSmallIcon();
-        String resStatua = listItems.get(position).getIconStatus();
+    public void onBindViewHolder(final TimeViewHolder holder, final int position) {
+        final Book book = listItems.get(position);
+
+        holder.mTvName.setText(book.getNameBook());
+        final int resSmall = book.getSmallIcon();
+        String resStatua = book.getIconStatus();
         if (resSmall != 0) {
             holder.mSmallIcon.setImageBitmap(decodeSampledBitmapFromResource(context.getResources(),
                     resSmall, 100, 100));
@@ -80,7 +90,7 @@ public class BookRecyclerAdapter extends
         holder.mSmallIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameBook = listItems.get(position).getNameBook();
+                String nameBook = book.getNameBook();
                 ContextDialog contextDialog = new ContextDialog(context, nameBook, resSmall);
                 contextDialog.show();
             }
@@ -88,8 +98,8 @@ public class BookRecyclerAdapter extends
         holder.mIconStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String link = listItems.get(position).getLinkDownload();
-                String nameBook = listItems.get(position).getNameBook();
+                String link = book.getLinkDownload();
+                String nameBook = book.getNameBook();
                 getFile = new GetAndShowFile(context);
                 getFile.downloadFileFromReppositoria(link, nameBook);
             }
@@ -98,11 +108,57 @@ public class BookRecyclerAdapter extends
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nameBook = listItems.get(position).getNameBook();
+                String nameBook = book.getNameBook();
                 getFile = new GetAndShowFile(context);
                 getFile.viewFile(nameBook);
             }
         });
+
+        holder.mCardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (!holder.mIconStatus.isEnabled()) {
+                    ad = new AlertDialog.Builder(context);
+                    ad.setTitle("Удаление файла книги!");  // заголовок
+                    ad.setMessage(context.getString(R.string.want_like_delete_book) +
+                            book.getNameBook()  + "?"); // сообщение
+                    ad.setIcon(android.R.drawable.ic_menu_info_details);
+                    ad.setPositiveButton(R.string.yes,  new OnClickListener() {
+                        public void onClick(DialogInterface dialog, int arg1) {
+                            deleteFileBook(book);
+                        }
+                    });
+                    ad.setNegativeButton(R.string.no, new OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+                    ad.show();
+                }
+                return true;
+            }
+        });
+    }
+
+    private void deleteFileBook(Book book) {
+        deleteFileFromSD(book.getNameBook());
+        DBImpl.getInstanceDB(context).putFlagLoader("0", book.getNameBook());
+    }
+
+    private void deleteFileFromSD(String nameBook) {
+        nameBook += ".pdf";
+        String path = Environment.getExternalStorageDirectory() + "/" +
+                NAME_FOLDER_SAVED + "/" + nameBook;
+        File pdfFile = new File(path);  // -> filename = maven.pdf
+        if (pdfFile.exists()) {
+            try {
+                pdfFile.delete();
+                Toast.makeText(context, "Файл " + nameBook + " удалегн", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
