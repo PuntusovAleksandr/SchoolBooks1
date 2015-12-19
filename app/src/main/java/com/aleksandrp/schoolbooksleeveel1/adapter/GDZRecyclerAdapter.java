@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.db.entity.Book;
 import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialog;
+import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,8 @@ import java.util.ArrayList;
  * Created by Aleksandr on 26.11.2015.
  */
 public class GDZRecyclerAdapter extends
-        RecyclerView.Adapter<GDZRecyclerAdapter.TimeViewHolder> {
+        RecyclerView.Adapter<GDZRecyclerAdapter.TimeViewHolder>
+        implements StaticValues {
 
     private ArrayList<Book> listItems;
     private Context context;

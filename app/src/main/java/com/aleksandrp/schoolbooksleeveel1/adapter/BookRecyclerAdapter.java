@@ -82,7 +82,7 @@ public class BookRecyclerAdapter extends
         if (!resStatua.equals("0")) {
             holder.mIconStatus.setImageResource(R.drawable.pdf_500x500_down);
             holder.mIconStatus.setEnabled(false);
-        }else {
+        } else {
             holder.mIconStatus.setImageResource(R.drawable.download_pdf_70x70);
             holder.mIconStatus.setEnabled(true);
         }
@@ -121,9 +121,9 @@ public class BookRecyclerAdapter extends
                     ad = new AlertDialog.Builder(context);
                     ad.setTitle("Удаление файла книги!");  // заголовок
                     ad.setMessage(context.getString(R.string.want_like_delete_book) +
-                            book.getNameBook()  + "?"); // сообщение
+                            book.getNameBook() + "?"); // сообщение
                     ad.setIcon(android.R.drawable.ic_menu_info_details);
-                    ad.setPositiveButton(R.string.yes,  new OnClickListener() {
+                    ad.setPositiveButton(R.string.yes, new OnClickListener() {
                         public void onClick(DialogInterface dialog, int arg1) {
                             deleteFileBook(book);
                         }
@@ -186,6 +186,7 @@ public class BookRecyclerAdapter extends
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
     }
+
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image

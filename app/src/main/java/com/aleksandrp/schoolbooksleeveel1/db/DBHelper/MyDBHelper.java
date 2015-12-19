@@ -34,8 +34,12 @@ public class MyDBHelper extends SQLiteOpenHelper implements ValuesDB {
         Resources res = context.getResources();
 //        String[] books = res.getStringArray(R.array.insert_books);
 
-        for (int i = 0; i < massQueryBook.length; i++) {
-            db.execSQL(BASE_START_QUERY + massQueryBook[i] + BASE_END_QUERY);
+        for (int i = 0; i < INSERT_BOOKS_IN_DB.length; i++) {
+            db.execSQL(QUERY_ISERT_IN_TO_BOOKS + INSERT_BOOKS_IN_DB[i] + BASE_END_QUERY);
+        }
+
+        for (int i = 0; i < INSERT_GDZ_IN_DB.length; i++) {
+            db.execSQL(QUERY_ISERT_IN_TO_GDZ + INSERT_GDZ_IN_DB[i] + BASE_END_QUERY);
         }
 
 
