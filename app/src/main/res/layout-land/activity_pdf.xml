@@ -92,6 +92,13 @@
         android:background="@color/colorAccentTransparent"
         android:orientation="vertical"
         android:visibility="invisible" />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb_pdf_view"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>

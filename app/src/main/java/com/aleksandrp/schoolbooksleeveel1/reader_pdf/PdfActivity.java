@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
@@ -32,6 +33,7 @@ public class PdfActivity extends AppCompatActivity
     private ImageView rightArrow;
     private EditText numberPage;
     private NumberPicker numberPicker;
+    private ProgressBar mProgressBar;
 
 
     @Override
@@ -51,15 +53,18 @@ public class PdfActivity extends AppCompatActivity
         if (pdfFile.exists()) {
             try {
                 mPdfView = (PDFView) findViewById(R.id.pdfview);
-                mPdfView.fromFile(pdfFile)
-                        .defaultPage(pageNumberDef)
-                        .swipeVertical(true)
-                        .showMinimap(true)
-                        .enableSwipe(true)
-                        .onLoad(this)
-                        .onPageChange(this)
-                        .load();
-
+                try {
+                    mPdfView.fromFile(pdfFile)
+                            .defaultPage(pageNumberDef)
+                            .swipeVertical(true)
+                            .showMinimap(true)
+                            .enableSwipe(true)
+                            .onLoad(this)
+                            .onPageChange(this)
+                            .load();
+                } catch (RuntimeException r) {
+                    System.out.println("=======ERROR======" + r.getLocalizedMessage());
+                }
                 title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
                 setTitle(title);
                 pageCount = mPdfView.getCurrentPage();
@@ -68,6 +73,8 @@ public class PdfActivity extends AppCompatActivity
                 e.printStackTrace();
             }
         } else Toast.makeText(PdfActivity.this, "File поврежден", Toast.LENGTH_SHORT).show();
+
+        pdfFile.canRead();
 
     }
 
@@ -78,6 +85,7 @@ public class PdfActivity extends AppCompatActivity
         rightArrow = (ImageView) findViewById(R.id.iv_right_arrow);
         numberPage = (EditText) findViewById(R.id.tv_number_page);
         numberPage.setText(pageNumberDef + "/" + pageCount);
+        mProgressBar = (ProgressBar) findViewById(R.id.pb_pdf_view);
 
         leftArrow.setOnClickListener(listener);
         rightArrow.setOnClickListener(listener);
@@ -157,7 +165,10 @@ public class PdfActivity extends AppCompatActivity
      */
     @Override
     public void loadComplete(int nPages) {
+        mProgressBar.setVisibility(View.VISIBLE);
         Toast.makeText(PdfActivity.this, "loaded " + nPages + " pages", Toast.LENGTH_SHORT).show();
-
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
+
 }
+
