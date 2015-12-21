@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
+import com.aleksandrp.schoolbooksleeveel1.ads.banner.Ads;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
 import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialogInfo;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
@@ -51,6 +52,9 @@ public class StartActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        Ads.showBanner(StartActivity.this);
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         db = DBImpl.getInstanceDB(StartActivity.this);
         setUi();
