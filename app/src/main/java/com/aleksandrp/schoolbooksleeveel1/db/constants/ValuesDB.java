@@ -68,8 +68,8 @@ public interface ValuesDB {
             "('Природознавство (Грущинська) 1 клас', " + R.drawable.priroda_grushunska + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyajJLWF9RVV81NVE', 8)",
             "('Російська мова (Лапшина, Зорька) 1 клас', " + R.drawable.rus_lapshuna + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyMk4tZ3NRY1lzMm8', 9)",
             "('Російська мова (Статівка, Самонова) 1 клас', " + R.drawable.rus_stativka + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyb3BiYVd5OWEtaDg', 9)",
-            "('Трудове навчання (Сидоренко, Котелянець) 1 клас', " + R.drawable.trud + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyaDZOSDU3RC1vdlE', 10)",
-            "('Українська мова (Захарійчук) 1 клас', " + R.drawable.ukr_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyS3drQ3ZEY1dsLVE', 11)",
+            "('Трудове навчання (Сидоренко, Котелянець) 1 клас', " + R.drawable.trud + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyQVdxdkZKWjN6Y2M', 10)",
+            "('Українська мова (Захарійчук) 1 клас', " + R.drawable.ukr_zaharcuk + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyQVdxdkZKWjN6Y2M', 11)",
             "('Французька мова (Клименко) 1 клас', " + R.drawable.fran_klimenko + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyVGZJR200eXdLTUE', 12)",
             "('Французька мова (Чумак, Кривошеєва) 1 клас', " + R.drawable.franc_cumak + ", 'https://drive.google.com/open?id=0B3SV6nfdIWiyX0FOcFJNOUZkM2c', 12)"
     };
