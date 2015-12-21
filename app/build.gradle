@@ -37,15 +37,15 @@ dependencies {
 //    compile ('com.github.asne:asne-vk:0.3.3'){
 //        exclude group: 'com.google.android.gms, module: 'play-services-ads'
 //    }
-//    compile 'com.github.asne:asne-vk:0.3.3'
-//    compile 'com.github.asne:asne-twitter:0.3.3'
-//    compile 'com.github.asne:asne-odnoklassniki:0.3.3'
-//    compile 'com.github.asne:asne-linkedin:0.3.3'
-//    compile 'com.github.asne:asne-instagram:0.3.3'
-//    compile 'com.github.asne:asne-googleplus:0.3.3'
-//    compile 'com.github.asne:asne-facebook:0.3.3'
-//    compile 'com.github.asne:asne-core:0.3.3'
+    compile 'com.github.asne:asne-vk:0.3.3'
+    compile 'com.github.asne:asne-twitter:0.3.3'
+    compile 'com.github.asne:asne-odnoklassniki:0.3.3'
+    compile 'com.github.asne:asne-linkedin:0.3.3'
+    compile 'com.github.asne:asne-instagram:0.3.3'
+    compile 'com.github.asne:asne-googleplus:0.3.3'
+    compile 'com.github.asne:asne-facebook:0.3.3'
+    compile 'com.github.asne:asne-core:0.3.3'
 
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
+//    compile 'com.google.android.gms:play-services-ads:8.4.0'
 }
 //https://github.com/JoanZapata/android-pdfview     // pdf library
