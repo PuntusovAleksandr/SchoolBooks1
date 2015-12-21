@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_context_dialog_info"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/cardview_default_radius"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tv_title_context_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/cardview_default_elevation"
+            android:gravity="center_horizontal"
+            android:textSize="22sp"
+            android:text="Информация"/>
+
+        <View
+            android:id="@+id/con_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cardview_default_elevation"
+            android:layout_below="@+id/tv_title_context_info"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/tv_context_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/con_view"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:scaleType="center"
+            android:textSize="18sp"
+            android:text="Данная программа разработана для использования в средне-образовательных школах в качестве электронной книги."/>
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_context_info"
+            android:layout_below="@+id/tv_context_info"
+            android:src="@android:drawable/ic_menu_revert"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:scaleType="center"
+            android:background="@color/colorAccentTransparent"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

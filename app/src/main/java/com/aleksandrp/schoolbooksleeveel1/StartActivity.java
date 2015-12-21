@@ -22,10 +22,10 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.adapter.TabAdapter;
 import com.aleksandrp.schoolbooksleeveel1.db.functions_db.DBImpl;
+import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialogInfo;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
@@ -205,8 +205,8 @@ public class StartActivity extends AppCompatActivity
             startActivity(intent, bndlanimation);
 //            startActivity(intent);
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_send) {
-            Toast.makeText(StartActivity.this, "Этот раздел нахоится в разработке", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_info) {
+            (new ContextDialogInfo(StartActivity.this)).show();
         }
         return true;
     }
