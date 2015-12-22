@@ -3,6 +3,7 @@ package com.aleksandrp.schoolbooksleeveel1.reader_pdf;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -14,11 +15,17 @@ import android.widget.Toast;
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.ads.banner.Ads;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnLoadCompleteListener;
 import com.joanzapata.pdfview.listener.OnPageChangeListener;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class PdfActivity extends AppCompatActivity
         implements OnPageChangeListener, OnLoadCompleteListener,
@@ -36,6 +43,8 @@ public class PdfActivity extends AppCompatActivity
     private NumberPicker numberPicker;
     private ProgressBar mProgressBar;
 
+    private InterstitialAd mInterstitialAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +52,65 @@ public class PdfActivity extends AppCompatActivity
         setContentView(R.layout.activity_pdf);
 
         Ads.showBanner(PdfActivity.this);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.big_banner_id));
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+            }
+        });
 
         setPdf();
         setUi();
         setNumberPicker();
+        requestNewInterstitial();
     }
+
+    private void requestNewInterstitial() {
+        if (!mInterstitialAd.isLoaded()) {
+
+            //get EMULATOR deviceID todo потом надо удалить
+            String android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            String deviceId = md5(android_id).toUpperCase(Locale.ENGLISH);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(deviceId)
+//                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            mInterstitialAd.loadAd(adRequest);
+        }
+    }
+
+
+
+    public static final String md5(final String s)
+    {
+        try
+        {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+            {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e)
+        {
+            //Logger.logStackTrace(TAG,e);
+            System.out.println(e.getLocalizedMessage());
+        }
+        return "";
+    }
+
 
     private void setPdf() {
         Intent intent = getIntent();
@@ -173,5 +236,12 @@ public class PdfActivity extends AppCompatActivity
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
 }
 

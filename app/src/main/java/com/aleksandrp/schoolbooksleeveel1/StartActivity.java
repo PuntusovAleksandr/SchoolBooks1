@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -32,9 +33,13 @@ import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
 import com.aleksandrp.schoolbooksleeveel1.social_networks.SocialNetworksActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class StartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -48,12 +53,22 @@ public class StartActivity extends AppCompatActivity
 
     public static ProgressBar mProgressBar;
 
+    private InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
         Ads.showBanner(StartActivity.this);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId(getString(R.string.big_banner_id));
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+            }
+        });
 
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         db = DBImpl.getInstanceDB(StartActivity.this);
@@ -62,6 +77,47 @@ public class StartActivity extends AppCompatActivity
         mProgressBar.setIndeterminateDrawable(this.getResources()
                 .getDrawable(R.drawable.download_icon));
         printHashKey();
+        requestNewInterstitial();
+    }
+    private void requestNewInterstitial() {
+        if (!mInterstitialAd.isLoaded()) {
+            //get EMULATOR deviceID todo потом надо удалить
+            String android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+            String deviceId = md5(android_id).toUpperCase(Locale.ENGLISH);
+            AdRequest adRequest = new AdRequest.Builder()
+                    .addTestDevice(deviceId)
+//                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+            mInterstitialAd.loadAd(adRequest);
+        }
+    }
+
+    public static final String md5(final String s)
+    {
+        try
+        {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++)
+            {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e)
+        {
+            //Logger.logStackTrace(TAG,e);
+            System.out.println(e.getLocalizedMessage());
+        }
+        return "";
     }
 
 
@@ -132,6 +188,9 @@ public class StartActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (mInterstitialAd.isLoaded() && !drawer.isDrawerOpen(GravityCompat.START)) {
+            mInterstitialAd.show();
+        }
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
