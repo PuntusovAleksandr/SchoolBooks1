@@ -1,105 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.aleksandrp.schoolbooksleeveel1.reader_pdf.PdfActivity">
 
-    <com.joanzapata.pdfview.PDFView
-        android:id="@+id/pdfview"
+    <RelativeLayout
+        android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/pdf_view"
-        android:layout_marginBottom="@dimen/cardview_default_elevation" />
+        android:layout_height="match_parent">
+
+        <com.joanzapata.pdfview.PDFView
+            android:id="@+id/pdfview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/pdf_view"
+            android:layout_marginBottom="@dimen/cardview_default_elevation" />
 
 
-    <LinearLayout
-        android:id="@+id/ll_desk"
+        <LinearLayout
+            android:id="@+id/ll_desk"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_pdf_activity"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/cardview_default_elevation"
+            android:orientation="horizontal"
+            android:padding="@dimen/cardview_default_elevation">
+
+
+            <ImageView
+                android:id="@+id/iv_zoom_min"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/zoom_out"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/iv_left_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/left_arrow" />
+
+            <EditText
+                android:id="@+id/tv_number_page"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="4"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:id="@+id/iv_right_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/right_arrow" />
+
+            <ImageView
+                android:id="@+id/iv_zoom_max"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:src="@drawable/zoom_in"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/pdf_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cardview_default_elevation"
+            android:layout_above="@+id/ll_desk"
+            android:background="@color/colorPrimaryDark" />
+
+
+        <NumberPicker
+            android:id="@+id/numberPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_horizontal"
+            android:width="100dip"
+            android:background="@color/colorAccentTransparent"
+            android:enabled="true"
+            android:orientation="vertical"
+            android:visibility="invisible" />
+
+        <ProgressBar
+            android:id="@+id/pb_pdf_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_pdf_activity"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/cardview_default_elevation"
-        android:orientation="horizontal"
-        android:padding="@dimen/cardview_default_elevation">
-
-
-        <ImageView
-            android:id="@+id/iv_zoom_min"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/zoom_out"
-            android:visibility="invisible" />
-
-        <ImageView
-            android:id="@+id/iv_left_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/left_arrow" />
-
-        <EditText
-            android:id="@+id/tv_number_page"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="4"
-            android:clickable="true"
-            android:cursorVisible="false"
-            android:focusableInTouchMode="false"
-            android:gravity="center"
-            android:textStyle="normal" />
-
-        <ImageView
-            android:id="@+id/iv_right_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/right_arrow" />
-
-        <ImageView
-            android:id="@+id/iv_zoom_max"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:src="@drawable/zoom_in"
-            android:visibility="invisible" />
-
-
-    </LinearLayout>
-
-    <View
-        android:id="@+id/pdf_view"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cardview_default_elevation"
-        android:layout_above="@+id/ll_desk"
-        android:background="@color/colorPrimaryDark" />
-
-
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_gravity="center_horizontal"
-        android:width="100dip"
-        android:enabled="true"
-        android:background="@color/colorAccentTransparent"
-        android:orientation="vertical"
-        android:visibility="invisible" />
-
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pb_pdf_view"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"/>
-
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/bottom_banner_id" />
 
 </RelativeLayout>

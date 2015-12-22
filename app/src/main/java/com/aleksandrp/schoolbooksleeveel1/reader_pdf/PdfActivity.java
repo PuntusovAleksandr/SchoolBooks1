@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
+import com.aleksandrp.schoolbooksleeveel1.ads.banner.Ads;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 import com.joanzapata.pdfview.PDFView;
 import com.joanzapata.pdfview.listener.OnLoadCompleteListener;
@@ -40,6 +41,8 @@ public class PdfActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
+
+        Ads.showBanner(PdfActivity.this);
 
         setPdf();
         setUi();
