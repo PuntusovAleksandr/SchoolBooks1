@@ -94,16 +94,26 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/friends"
+                android:id="@+id/bt_logout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
                 android:background="@color/dark"
                 android:padding="8dp"
-                android:text="Friends"
-                android:textColor="#ffffffff"
-                android:visibility="gone" />
+                android:text="Выход из профиля"
+                android:textColor="#ffffffff"/>
+
+            <!--<Button-->
+                <!--android:id="@+id/friends"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginRight="1dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="@color/dark"-->
+                <!--android:padding="8dp"-->
+                <!--android:text="Friends"-->
+                <!--android:textColor="#ffffffff"/>-->
 
             <Button
                 android:id="@+id/share"

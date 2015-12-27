@@ -5,9 +5,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,7 +36,8 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     private TextView name;
     private TextView id;
     private TextView info;
-    private Button friends;
+//    private Button friends;
+    private Button logout;
     private Button share;
     private RelativeLayout frame;
 
@@ -68,8 +66,10 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         name = (TextView) rootView.findViewById(R.id.name);
         id = (TextView) rootView.findViewById(R.id.id);
         info = (TextView) rootView.findViewById(R.id.info);
-        friends = (Button) rootView.findViewById(R.id.friends);
-        friends.setOnClickListener(friendsClick);
+//        friends = (Button) rootView.findViewById(R.id.friends);
+        logout = (Button) rootView.findViewById(R.id.bt_logout);
+//        friends.setOnClickListener(friendsClick);
+        logout.setOnClickListener(logoutListener);
         share = (Button) rootView.findViewById(R.id.share);
         share.setOnClickListener(shareClick);
         colorProfile(networkId);
@@ -82,23 +82,23 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         return rootView;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.main, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_logout:
-                socialNetwork.logout();
-                getActivity().getSupportFragmentManager().popBackStack();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.main, menu);
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_logout:
+//                socialNetwork.logout();
+//                getActivity().getSupportFragmentManager().popBackStack();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     @Override
     public void onRequestSocialPersonSuccess(int i, SocialPerson socialPerson) {
@@ -119,14 +119,21 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         Toast.makeText(getActivity(), "ERROR: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 
-    private View.OnClickListener friendsClick = new View.OnClickListener() {
+//    private View.OnClickListener friendsClick = new View.OnClickListener() {
+//        @Override
+//        public void onClick(View view) {
+//            FriendsFragment friends = FriendsFragment.newInstannce(networkId);
+//            getActivity().getSupportFragmentManager().beginTransaction()
+//                    .addToBackStack("friends")
+//                    .replace(R.id.container, friends)
+//                    .commit();
+//        }
+//    };
+    private View.OnClickListener logoutListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            FriendsFragment friends = FriendsFragment.newInstannce(networkId);
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .addToBackStack("friends")
-                    .replace(R.id.container, friends)
-                    .commit();
+            socialNetwork.logout();
+            getActivity().getSupportFragmentManager().popBackStack();
         }
     };
 
@@ -196,7 +203,8 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         }
         frame.setBackgroundColor(color);
         name.setTextColor(color);
-        friends.setBackgroundColor(color);
+//        friends.setBackgroundColor(color);
+        logout.setBackgroundColor(color);
         share.setBackgroundColor(color);
         photo.setBackgroundColor(color);
         photo.setImageResource(image);
