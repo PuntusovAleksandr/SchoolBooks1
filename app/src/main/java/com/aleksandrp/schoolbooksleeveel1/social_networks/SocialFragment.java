@@ -5,7 +5,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
@@ -33,10 +34,16 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
      * 6 - Odnoklassniki
      * 7 - Instagram
      */
-    private Button facebook;
-    private Button twitter;
-    private Button linkedin;
-    private Button googleplus;
+    private ImageButton facebook;
+    private ImageButton twitter;
+    private ImageButton linkedin;
+    private ImageButton googleplus;
+
+    private TextView textFaceBook;;
+    private TextView textTwitter;
+    private TextView textLinked;
+    private TextView textGoogle;
+    private TextView textVk;
 
     public SocialFragment() {
     }
@@ -44,17 +51,23 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.social_main_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.social_networks, container, false);
 //        ((SocialNetworksActivity)getActivity()).getSupportActionBar().setTitle(R.string.app_name);
         // init buttons and set Listener
-        facebook = (Button) rootView.findViewById(R.id.facebook);
+        facebook = (ImageButton) rootView.findViewById(R.id.ib_facebook);
         facebook.setOnClickListener(loginClick);
-        twitter = (Button) rootView.findViewById(R.id.twitter);
+        twitter = (ImageButton) rootView.findViewById(R.id.ib_twitter);
         twitter.setOnClickListener(loginClick);
-        linkedin = (Button) rootView.findViewById(R.id.linkedin);
+        linkedin = (ImageButton) rootView.findViewById(R.id.ib_linkedin);
         linkedin.setOnClickListener(loginClick);
-        googleplus = (Button) rootView.findViewById(R.id.googleplus);
+        googleplus = (ImageButton) rootView.findViewById(R.id.ib_google_plus);
         googleplus.setOnClickListener(loginClick);
+
+        textFaceBook = (TextView) rootView.findViewById(R.id.text_face_book);
+        textTwitter = (TextView) rootView.findViewById(R.id.text_twitter);
+        textLinked = (TextView) rootView.findViewById(R.id.text_linkedink);
+        textGoogle = (TextView) rootView.findViewById(R.id.text_google_plus_social);
+        textVk = (TextView) rootView.findViewById(R.id.text_vk);
 
         //Get Keys for initiate SocialNetworks
         String TWITTER_CONSUMER_KEY = getActivity().getString(R.string.twitter_consumer_key);
@@ -112,16 +125,16 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         if(socialNetwork.isConnected()){
             switch (socialNetwork.getID()){
                 case FacebookSocialNetwork.ID:
-                    facebook.setText("Show Facebook profile");
+                    textFaceBook.setText(R.string.show_profile);
                     break;
                 case TwitterSocialNetwork.ID:
-                    twitter.setText("Show Twitter profile");
+                    textTwitter.setText(R.string.show_profile);
                     break;
                 case LinkedInSocialNetwork.ID:
-                    linkedin.setText("Show LinkedIn profile");
+                    textLinked.setText(R.string.show_profile);
                     break;
                 case GooglePlusSocialNetwork.ID:
-                    googleplus.setText("Show GooglePlus profile");
+                    textGoogle.setText(R.string.show_profile);
                     break;
             }
         }
@@ -142,16 +155,16 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         public void onClick(View view) {
             int networkId = 0;
             switch (view.getId()){
-                case R.id.facebook:
+                case R.id.ib_facebook:
                     networkId = FacebookSocialNetwork.ID;
                     break;
-                case R.id.twitter:
+                case R.id.ib_twitter:
                     networkId = TwitterSocialNetwork.ID;
                     break;
-                case R.id.linkedin:
+                case R.id.ib_linkedin:
                     networkId = LinkedInSocialNetwork.ID;
                     break;
-                case R.id.googleplus:
+                case R.id.ib_google_plus:
                     networkId = GooglePlusSocialNetwork.ID;
                     break;
             }

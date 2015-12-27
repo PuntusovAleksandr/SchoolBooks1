@@ -40,5 +40,7 @@
     <string name="twitter_consumer_secret">dSUHvkbS8xCwoS6lozPAFgDtIuKhTGkRW1OYXJqxBCMgKMyDX4</string>
     <string name="linkedin_consumer_key">7523ssry5qk7rl</string>
     <string name="linkedin_consumer_secret">sFyJf0ZW1lp31aGU</string>
+    <string name="login_in_profile">Войти</string>
+    <string name="show_profile">Профиль</string>
 
 </resources>

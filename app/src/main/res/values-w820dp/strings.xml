@@ -9,4 +9,6 @@
     <string name="no">Нет</string>
     <string name="share">Share</string>
     <string name="info">Info</string>
+    <string name="login_in_profile">Войти</string>
+    <string name="show_profile">Профиль</string>
 </resources>

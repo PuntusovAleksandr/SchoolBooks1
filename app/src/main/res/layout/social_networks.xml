@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/include_social"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorAccentTransparent"
-    android:orientation="vertical"
-    android:id="@+id/include_social">
+    android:orientation="vertical">
+
     <View
         android:id="@+id/con_view"
         android:layout_width="match_parent"
@@ -14,24 +15,26 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/colorPrimaryDark" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.9"
         android:background="@color/transparent"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/text_in_social"
-            android:textSize="24sp"
-            android:textColor="@color/colorText"
             android:layout_margin="@dimen/activity_horizontal_margin"
+            android:gravity="center"
             android:padding="@dimen/activity_vertical_margin"
-            android:gravity="center"/>
+            android:text="@string/text_in_social"
+            android:textColor="@color/colorText"
+            android:textSize="24sp" />
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/cardview_default_elevation"
@@ -39,14 +42,15 @@
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/colorPrimaryDark" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_vertical_margin"
+        android:layout_weight="1"
         android:background="@color/colorAccentTransparent"
+        android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
         <LinearLayout
@@ -56,29 +60,80 @@
             android:background="@color/transparent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ib_facebook"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_facebook"
-                android:layout_margin="@dimen/activity_horizontal_margin"/>
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/ib_google_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_google"
-                android:layout_margin="@dimen/activity_horizontal_margin"/>
+                <ImageButton
+                    android:id="@+id/ib_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_face_book"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_facebook" />
 
-            <ImageButton
-                android:id="@+id/ib_linkedin"
+                <TextView
+                    android:id="@+id/text_face_book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_linced"
-                android:layout_margin="@dimen/activity_horizontal_margin" />
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ib_google_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_google_plus_social"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_google" />
+
+                <TextView
+                    android:id="@+id/text_google_plus_social"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ib_linkedin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_linkedink"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_linced" />
+
+                <TextView
+                    android:id="@+id/text_linkedink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -88,32 +143,84 @@
             android:background="@color/transparent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/ib_odnoclassniki"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_odnoklassniki"
-                android:layout_margin="@dimen/activity_horizontal_margin"/>
+                android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/ib_twiter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/ic_twiter"
-                android:layout_margin="@dimen/activity_horizontal_margin" />
+                <ImageButton
+                    android:id="@+id/ib_odnoclassniki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_odnoklassniki"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_odnoklassniki" />
 
-            <ImageButton
-                android:id="@+id/ib_vcontacte"
+                <TextView
+                    android:id="@+id/text_odnoklassniki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_vc"
-                android:layout_margin="@dimen/activity_horizontal_margin"/>
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ib_twitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_twitter"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_twiter" />
+
+                <TextView
+                    android:id="@+id/text_twitter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/ib_vcontacte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_vk"
+                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/ic_vc" />
+
+                <TextView
+                    android:id="@+id/text_vk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/login_in_profile" />
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/cardview_default_elevation"
