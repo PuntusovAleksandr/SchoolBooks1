@@ -101,7 +101,7 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
             LinkedInSocialNetwork liNetwork = new LinkedInSocialNetwork(this, LINKEDIN_CONSUMER_KEY, LINKEDIN_CONSUMER_SECRET, LINKEDIN_CALLBACK_URL, linkedInScope);
             mSocialNetworkManager.addSocialNetwork(liNetwork);
 
-            //Init and add to manager LinkedInSocialNetwork
+            //Init and add to manager GooglePlusSocialNetwork
             GooglePlusSocialNetwork gpNetwork = new GooglePlusSocialNetwork(this);
             mSocialNetworkManager.addSocialNetwork(gpNetwork);
 
