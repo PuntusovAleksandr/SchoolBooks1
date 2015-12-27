@@ -26,7 +26,7 @@ import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment implements OnRequestSocialPersonCompleteListener {
     private String message = "Ваши дети носят толстые и тяжелые учебники? \nТогда, Вам необходима наша программа!";
-    private String link = "";
+    private String link = "https://play.google.com/store/apps/details?id=com.aleksandrp.schoolbooksleeveel1&ah=7A_p-HNtdvozyaOQHY_bezMYhOA&hl=ru";
 //    private String link = "https://github.com/gorbin/ASNE";
 
     private static final String NETWORK_ID = "NETWORK_ID";
