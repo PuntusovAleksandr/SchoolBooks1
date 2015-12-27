@@ -1,116 +1,119 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/grey_light">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/include_social"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccentTransparent"
+    android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/frame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:background="@color/dark"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="8dp"
-        android:id="@+id/frame"
-        android:background="@color/dark">
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
+            android:id="@+id/card"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_margin="3dp"
-            android:id="@+id/card"
             android:background="#FFFFFF">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
                 android:id="@+id/imageView"
-                android:layout_margin="8dp"
-                android:padding="2dp"
-                android:background="@color/grey_light"
-                android:layout_alignParentTop="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/user"
+                android:layout_alignParentTop="true"
+                android:layout_margin="8dp"
                 android:adjustViewBounds="true"
+                android:background="@color/grey_light"
                 android:cropToPadding="true"
-                android:scaleType="centerCrop"/>
+                android:padding="2dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/user" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="NoName"
-                android:maxLines="3"
-                android:singleLine="false"
                 android:id="@+id/name"
-                android:padding="8dp"
-                android:layout_alignTop="@+id/imageView"
-                android:layout_toRightOf="@+id/imageView"
-                android:layout_toEndOf="@+id/imageView"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="null"
                 android:maxLines="3"
-                android:singleLine="false"
-                android:id="@+id/id"
                 android:padding="8dp"
-                android:layout_below="@+id/name"
-                android:layout_alignLeft="@+id/name"
-                android:layout_alignStart="@+id/name" />
+                android:singleLine="false"
+                android:text="NoName"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_below="@+id/imageView"
+                android:layout_centerHorizontal="true" />
+
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignTop="@+id/imageView"-->
+            <!--android:layout_toEndOf="@+id/imageView"-->
+            <!--android:layout_toRightOf="@+id/imageView"-->
 
             <TextView
+                android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/info"
+                android:maxLines="3"
                 android:padding="8dp"
-                android:layout_marginBottom="4dp"
-                android:layout_below="@+id/imageView"
+                android:singleLine="false"
+                android:text="null"
+                android:layout_below="@+id/name"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView"
+                android:layout_marginBottom="4dp"
+                android:padding="8dp"
+                android:text=""
+                android:visibility="gone" />
 
         </RelativeLayout>
+
         <LinearLayout
+            android:id="@+id/buttonLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonLayout"
-            android:layout_below="@+id/card"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:background="@color/grey_light">
+            android:layout_below="@+id/card"
+            android:background="@color/grey_light"
+            android:gravity="center">
 
             <Button
+                android:id="@+id/friends"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Friends"
-                android:id="@+id/friends"
-                android:padding="8dp"
-                android:background="@color/dark"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
+                android:background="@color/dark"
+                android:padding="8dp"
+                android:text="Friends"
                 android:textColor="#ffffffff"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <Button
+                android:id="@+id/share"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/bt_share"
-                android:id="@+id/share"
-                android:padding="8dp"
-                android:background="@color/dark"
                 android:layout_weight="1"
-                android:textColor="#ffffffff"/>
+                android:background="@color/dark"
+                android:padding="8dp"
+                android:text="@string/bt_share"
+                android:textColor="#ffffffff" />
         </LinearLayout>
     </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

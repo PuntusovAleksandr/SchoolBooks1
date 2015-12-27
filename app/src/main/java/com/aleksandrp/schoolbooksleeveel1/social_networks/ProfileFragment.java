@@ -78,7 +78,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         socialNetwork.setOnRequestCurrentPersonCompleteListener(this);
         socialNetwork.requestCurrentPerson();
 
-        SocialNetworksActivity.showProgress("Loading social person");
+        SocialNetworksActivity.showProgress("Загрузка данных");
         return rootView;
     }
 
@@ -104,7 +104,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     public void onRequestSocialPersonSuccess(int i, SocialPerson socialPerson) {
         SocialNetworksActivity.hideProgress();
         name.setText(socialPerson.name);
-        id.setText(socialPerson.id);
+        id.setText("Ваш текущий id " + socialPerson.id);
         String socialPersonString = socialPerson.toString();
         String infoString = socialPersonString.substring(socialPersonString.indexOf("{")+1, socialPersonString.lastIndexOf("}"));
         info.setText(infoString.replace(", ", "\n"));
