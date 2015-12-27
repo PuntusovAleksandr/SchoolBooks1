@@ -42,5 +42,6 @@
     <string name="linkedin_consumer_secret">sFyJf0ZW1lp31aGU</string>
     <string name="login_in_profile">Войти</string>
     <string name="show_profile">Профиль</string>
+    <string name="bt_share">Поделиться</string>
 
 </resources>

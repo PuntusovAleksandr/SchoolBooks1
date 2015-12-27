@@ -28,8 +28,9 @@ import com.github.gorbin.asne.twitter.TwitterSocialNetwork;
 import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment implements OnRequestSocialPersonCompleteListener {
-    private String message = "Need simple social networks integration? Check this lbrary:";
-    private String link = "https://github.com/gorbin/ASNE";
+    private String message = "Ваши дети носят толстые и тяжелые учебники? \nТогда, Вам необходима наша программа!";
+    private String link = "";
+//    private String link = "https://github.com/gorbin/ASNE";
 
     private static final String NETWORK_ID = "NETWORK_ID";
     private SocialNetwork socialNetwork;
@@ -132,11 +133,11 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     private View.OnClickListener shareClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            AlertDialog.Builder ad = alertDialogInit("Would you like to post Link:", link);
-            ad.setPositiveButton("Post link", new DialogInterface.OnClickListener() {
+            AlertDialog.Builder ad = alertDialogInit("Вы хотите поделится этой программой у Вас на стрничке?", link);
+            ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     Bundle postParams = new Bundle();
-                    postParams.putString(SocialNetwork.BUNDLE_NAME, "Simple and easy way to add social networks for android application");
+                    postParams.putString(SocialNetwork.BUNDLE_NAME, "Школьные учебники у вас в телефоне");
                     postParams.putString(SocialNetwork.BUNDLE_LINK, link);
                     if(networkId == GooglePlusSocialNetwork.ID) {
                         socialNetwork.requestPostDialog(postParams, postingComplete);
@@ -145,7 +146,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
                     }
                 }
             });
-            ad.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int i) {
                     dialog.cancel();

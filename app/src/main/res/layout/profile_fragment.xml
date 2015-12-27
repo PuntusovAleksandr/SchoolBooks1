@@ -99,11 +99,12 @@
                 android:background="@color/dark"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:textColor="#ffffffff"/>
+                android:textColor="#ffffffff"
+                android:visibility="gone"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Share"
+                android:text="@string/bt_share"
                 android:id="@+id/share"
                 android:padding="8dp"
                 android:background="@color/dark"
