@@ -172,7 +172,7 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
             if(!socialNetwork.isConnected()) {
                 if(networkId != 0) {
                     socialNetwork.requestLogin();
-                    SocialNetworksActivity.showProgress("Loading social person");
+                    SocialNetworksActivity.showProgress("Загрузка данных профиля");
                 } else {
                     Toast.makeText(getActivity(), "Wrong networkId", Toast.LENGTH_LONG).show();
                 }
@@ -191,7 +191,7 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
     @Override
     public void onError(int networkId, String requestID, String errorMessage, Object data) {
         SocialNetworksActivity.hideProgress();
-        Toast.makeText(getActivity(), "ERROR: " + errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "ОШИБКА: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 
     private void startProfile(int networkId){

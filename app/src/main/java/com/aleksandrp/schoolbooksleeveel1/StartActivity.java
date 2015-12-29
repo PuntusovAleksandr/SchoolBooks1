@@ -31,6 +31,7 @@ import com.aleksandrp.schoolbooksleeveel1.dialods.ContextDialogInfo;
 import com.aleksandrp.schoolbooksleeveel1.frament.BooksFragment;
 import com.aleksandrp.schoolbooksleeveel1.frament.GDZFragment;
 import com.aleksandrp.schoolbooksleeveel1.get_and_view_books.GetAndShowFile;
+import com.aleksandrp.schoolbooksleeveel1.params.StaticParams;
 import com.aleksandrp.schoolbooksleeveel1.social_networks.SocialNetworksActivity;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 import com.google.android.gms.ads.AdListener;
@@ -195,6 +196,15 @@ public class StartActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            if (StaticParams.isProccessAsyn()) {
+                while (StaticParams.isProccessAsyn()) {
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             finish();
         }
     }

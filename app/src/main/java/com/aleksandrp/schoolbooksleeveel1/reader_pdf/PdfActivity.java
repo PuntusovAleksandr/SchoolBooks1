@@ -135,10 +135,10 @@ public class PdfActivity extends AppCompatActivity
                 setTitle(title);
                 pageCount = mPdfView.getCurrentPage();
             } catch (Exception e) {
-                Toast.makeText(PdfActivity.this, "Reload file", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PdfActivity.this, "Перезагрузите файл", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
-        } else Toast.makeText(PdfActivity.this, "File поврежден", Toast.LENGTH_SHORT).show();
+        } else Toast.makeText(PdfActivity.this, "Файл поврежден", Toast.LENGTH_SHORT).show();
 
         pdfFile.canRead();
 
@@ -232,7 +232,7 @@ public class PdfActivity extends AppCompatActivity
     @Override
     public void loadComplete(int nPages) {
         mProgressBar.setVisibility(View.VISIBLE);
-        Toast.makeText(PdfActivity.this, "loaded " + nPages + " pages", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PdfActivity.this, "Загрузка " + nPages + " страниц", Toast.LENGTH_SHORT).show();
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 

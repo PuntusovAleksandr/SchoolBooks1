@@ -63,6 +63,6 @@ public class FriendsFragment extends Fragment implements OnRequestGetFriendsComp
     @Override
     public void onError(int networkId, String requestID, String errorMessage, Object data) {
         SocialNetworksActivity.hideProgress();
-        Toast.makeText(getActivity(), "ERROR: " + errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "ОШИБКА: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 }

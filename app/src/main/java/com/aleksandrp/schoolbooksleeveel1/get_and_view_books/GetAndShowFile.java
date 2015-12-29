@@ -129,6 +129,7 @@ public class GetAndShowFile implements StaticValues {
 
         @Override
         protected Void doInBackground(String... strings) {
+            StaticParams.setProccessAsyn(true);
             String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
             String fileName = strings[1];  // -> maven.pdf
             String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
@@ -188,6 +189,7 @@ public class GetAndShowFile implements StaticValues {
             db.putFlagLoader(name, name);
             StartActivity.mProgressBar.setVisibility(View.INVISIBLE);
             StaticParams.setEnableButtonLoadFile(false);
+            StaticParams.setProccessAsyn(false);
         }
     }
 }

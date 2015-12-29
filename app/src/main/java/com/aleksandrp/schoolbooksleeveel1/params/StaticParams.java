@@ -6,6 +6,15 @@ package com.aleksandrp.schoolbooksleeveel1.params;
 public class StaticParams {
 
     private static boolean enableButtonLoadFile = false;
+    private static boolean proccessAsyn = false;
+
+    public static boolean isProccessAsyn() {
+        return proccessAsyn;
+    }
+
+    public static void setProccessAsyn(boolean proccessAsyn) {
+        StaticParams.proccessAsyn = proccessAsyn;
+    }
 
     public static boolean isEnableButtonLoadFile() {
         return enableButtonLoadFile;

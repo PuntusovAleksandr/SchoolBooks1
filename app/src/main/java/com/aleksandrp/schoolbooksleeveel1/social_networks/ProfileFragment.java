@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
+import com.aleksandrp.schoolbooksleeveel1.params.StaticParams;
 import com.github.gorbin.asne.core.SocialNetwork;
 import com.github.gorbin.asne.core.listener.OnPostingCompleteListener;
 import com.github.gorbin.asne.core.listener.OnRequestSocialPersonCompleteListener;
@@ -116,7 +117,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     @Override
     public void onError(int networkId, String requestID, String errorMessage, Object data) {
         SocialNetworksActivity.hideProgress();
-        Toast.makeText(getActivity(), "ERROR: " + errorMessage, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), "ОШИБКА: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 
 //    private View.OnClickListener friendsClick = new View.OnClickListener() {
@@ -143,6 +144,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
             AlertDialog.Builder ad = alertDialogInit("Вы хотите поделится этой программой у Вас на стрничке?", link);
             ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+                    StaticParams.setProccessAsyn(true);
                     Bundle postParams = new Bundle();
                     postParams.putString(SocialNetwork.BUNDLE_NAME, "Школьные учебники у вас в телефоне");
                     postParams.putString(SocialNetwork.BUNDLE_LINK, link);
@@ -171,12 +173,13 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     private OnPostingCompleteListener postingComplete = new OnPostingCompleteListener() {
         @Override
         public void onPostSuccessfully(int socialNetworkID) {
-            Toast.makeText(getActivity(), "Sent", Toast.LENGTH_LONG).show();
+            StaticParams.setProccessAsyn(false);
+            Toast.makeText(getActivity(), "Передано", Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onError(int socialNetworkID, String requestID, String errorMessage, Object data) {
-            Toast.makeText(getActivity(), "Error while sending: " + errorMessage, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Ошибка передачи: " + errorMessage, Toast.LENGTH_LONG).show();
         }
     };
 
