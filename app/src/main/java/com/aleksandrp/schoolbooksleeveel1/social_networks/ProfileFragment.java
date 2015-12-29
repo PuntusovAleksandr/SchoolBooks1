@@ -1,7 +1,7 @@
 package com.aleksandrp.schoolbooksleeveel1.social_networks;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -37,7 +37,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
     private TextView name;
     private TextView id;
     private TextView info;
-//    private Button friends;
+    //    private Button friends;
     private Button logout;
     private Button share;
     private RelativeLayout frame;
@@ -107,7 +107,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         name.setText(socialPerson.name);
         id.setText("Ваш текущий id " + socialPerson.id);
         String socialPersonString = socialPerson.toString();
-        String infoString = socialPersonString.substring(socialPersonString.indexOf("{")+1, socialPersonString.lastIndexOf("}"));
+        String infoString = socialPersonString.substring(socialPersonString.indexOf("{") + 1, socialPersonString.lastIndexOf("}"));
         info.setText(infoString.replace(", ", "\n"));
         Picasso.with(getActivity())
                 .load(socialPerson.avatarURL)
@@ -120,7 +120,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         Toast.makeText(getActivity(), "ОШИБКА: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 
-//    private View.OnClickListener friendsClick = new View.OnClickListener() {
+    //    private View.OnClickListener friendsClick = new View.OnClickListener() {
 //        @Override
 //        public void onClick(View view) {
 //            FriendsFragment friends = FriendsFragment.newInstannce(networkId);
@@ -137,38 +137,68 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
             getActivity().getSupportFragmentManager().popBackStack();
         }
     };
-
+    private Dialog dialog;
     private View.OnClickListener shareClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            AlertDialog.Builder ad = alertDialogInit("Вы хотите поделится этой программой у Вас на стрничке?", link);
-            ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+            dialog = new Dialog(getActivity());
+            dialog.setContentView(R.layout.custom_dialog_share);
+            dialog.setTitle("Поделиться программой?");
+            Button buttonOk = (Button) dialog.findViewById(R.id.bt_share_ok);
+            Button buttonCancel = (Button) dialog.findViewById(R.id.bt_share_cancel);
+            buttonOk.setOnClickListener(listenerShare);
+            buttonCancel.setOnClickListener(listenerShare);
+            dialog.show();
+
+//            AlertDialog.Builder ad = alertDialogInit("Вы хотите поделится этой программой у Вас на стрничке?", link);
+//            ad.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int id) {
+//                    StaticParams.setProccessAsyn(true);
+//                    Bundle postParams = new Bundle();
+//                    postParams.putString(SocialNetwork.BUNDLE_NAME, "Школьные учебники у вас в телефоне");
+//                    postParams.putString(SocialNetwork.BUNDLE_LINK, link);
+//                    if (networkId == GooglePlusSocialNetwork.ID) {
+//                        socialNetwork.requestPostDialog(postParams, postingComplete);
+//                    } else {
+//                        socialNetwork.requestPostLink(postParams, message, postingComplete);
+//                    }
+//                }
+//            });
+//            ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int i) {
+//                    dialog.cancel();
+//                }
+//            });
+//            ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+//                public void onCancel(DialogInterface dialog) {
+//                    dialog.cancel();
+//                }
+//            });
+//            ad.create().show();
+        }
+    };
+
+    View.OnClickListener listenerShare = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.bt_share_ok:
                     StaticParams.setProccessAsyn(true);
                     Bundle postParams = new Bundle();
                     postParams.putString(SocialNetwork.BUNDLE_NAME, "Школьные учебники у вас в телефоне");
                     postParams.putString(SocialNetwork.BUNDLE_LINK, link);
-                    if(networkId == GooglePlusSocialNetwork.ID) {
+                    if (networkId == GooglePlusSocialNetwork.ID) {
                         socialNetwork.requestPostDialog(postParams, postingComplete);
                     } else {
                         socialNetwork.requestPostLink(postParams, message, postingComplete);
                     }
-                }
-            });
-            ad.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int i) {
-                    dialog.cancel();
-                }
-            });
-            ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                public void onCancel(DialogInterface dialog) {
-                    dialog.cancel();
-                }
-            });
-            ad.create().show();
+                case R.id.bt_share_cancel:
+            }
+            dialog.dismiss();
         }
     };
+
 
     private OnPostingCompleteListener postingComplete = new OnPostingCompleteListener() {
         @Override
@@ -183,7 +213,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         }
     };
 
-    private void colorProfile(int networkId){
+    private void colorProfile(int networkId) {
         int color = getResources().getColor(R.color.dark);
         int image = R.drawable.user;
         switch (networkId) {
@@ -213,7 +243,7 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
         photo.setImageResource(image);
     }
 
-    private AlertDialog.Builder alertDialogInit(String title, String message){
+    private AlertDialog.Builder alertDialogInit(String title, String message) {
         AlertDialog.Builder ad = new AlertDialog.Builder(getActivity());
         ad.setTitle(title);
         ad.setMessage(message);
