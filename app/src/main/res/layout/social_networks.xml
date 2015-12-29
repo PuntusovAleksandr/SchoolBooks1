@@ -70,19 +70,17 @@
                     android:id="@+id/ib_facebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_facebook"
                     android:layout_below="@+id/text_face_book"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_facebook" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_face_book"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -95,19 +93,17 @@
                     android:id="@+id/ib_google_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_google"
                     android:layout_below="@+id/text_google_plus_social"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_google" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_google_plus_social"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -120,19 +116,17 @@
                     android:id="@+id/ib_linkedin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_linced"
                     android:layout_below="@+id/text_linkedink"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_linced" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_linkedink"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -153,19 +147,17 @@
                     android:id="@+id/ib_odnoclassniki"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_odnoklassniki"
                     android:layout_below="@+id/text_odnoklassniki"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_odnoklassniki" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_odnoklassniki"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -178,19 +170,17 @@
                     android:id="@+id/ib_twitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_twiter"
                     android:layout_below="@+id/text_twitter"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_twiter" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_twitter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -203,19 +193,17 @@
                     android:id="@+id/ib_vcontacte"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:src="@drawable/ic_vc"
                     android:layout_below="@+id/text_vk"
-                    android:layout_marginBottom="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:src="@drawable/ic_vc" />
+                    android:layout_centerHorizontal="true" />
 
                 <TextView
                     android:id="@+id/text_vk"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/login_in_profile"
                     android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/login_in_profile" />
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
         </LinearLayout>
 
