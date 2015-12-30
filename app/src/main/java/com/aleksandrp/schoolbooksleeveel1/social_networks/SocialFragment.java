@@ -17,12 +17,15 @@ import com.github.gorbin.asne.core.listener.OnLoginCompleteListener;
 import com.github.gorbin.asne.facebook.FacebookSocialNetwork;
 import com.github.gorbin.asne.googleplus.GooglePlusSocialNetwork;
 import com.github.gorbin.asne.linkedin.LinkedInSocialNetwork;
+import com.github.gorbin.asne.odnoklassniki.OkSocialNetwork;
 import com.github.gorbin.asne.twitter.TwitterSocialNetwork;
 import com.github.gorbin.asne.vk.VkSocialNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import ru.ok.android.sdk.util.OkScope;
 
 public class SocialFragment extends Fragment implements SocialNetworkManager.OnInitializationCompleteListener, OnLoginCompleteListener {
     public static SocialNetworkManager mSocialNetworkManager;
@@ -88,12 +91,17 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         String LINKEDIN_CONSUMER_SECRET = getActivity().getString(R.string.linkedin_consumer_secret);
         String LINKEDIN_CALLBACK_URL = "https://asneTutorial";
         String VK_CONSUMER_KEY = getActivity().getString(R.string.vk_app_key);
+        String OK_APP_ID = getActivity().getString(R.string.ok_app_id);
+        String OK_APP_PUB_KEY = getActivity().getString(R.string.ok_pub_key);
+        String OK_APP_SEC_KEY = getActivity().getString(R.string.app_sec_key);
+
 
         //Chose permissions
         ArrayList<String> fbScope = new ArrayList<String>();
         fbScope.addAll(Arrays.asList("public_profile, email, user_friends"));
         String linkedInScope = "r_basicprofile+r_fullprofile+rw_nus+r_network+w_messages+r_emailaddress+r_contactinfo";
         String[] vkScope = {"user_id", "photos", "wall", "ads"};
+        String[] okScope = {OkScope.VALUABLE_ACCESS, OkScope.PHOTO_CONTENT, OkScope.SET_STATUS};
 
         //Use manager to manage SocialNetworks
         mSocialNetworkManager = (SocialNetworkManager) getFragmentManager().findFragmentByTag(SocialNetworksActivity.SOCIAL_NETWORK_TAG);
@@ -121,6 +129,10 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
             //Init and add to manager VK
             VkSocialNetwork vkNetwork = new VkSocialNetwork(this, VK_CONSUMER_KEY, vkScope);
             mSocialNetworkManager.addSocialNetwork(vkNetwork);
+
+            //Init and add to manager Odnoklassniki
+            OkSocialNetwork odNetwork = new OkSocialNetwork(this, OK_APP_ID, OK_APP_PUB_KEY, OK_APP_SEC_KEY, okScope);
+            mSocialNetworkManager.addSocialNetwork(odNetwork);
 
             //Initiate every network from mSocialNetworkManager
             getFragmentManager().beginTransaction().add(mSocialNetworkManager, SocialNetworksActivity.SOCIAL_NETWORK_TAG).commit();
@@ -154,6 +166,9 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
                     textGoogle.setText(R.string.show_profile);
                     break;
                 case VkSocialNetwork.ID:
+                    textVk.setText(R.string.show_profile);
+                    break;
+                case OkSocialNetwork.ID:
                     textVk.setText(R.string.show_profile);
                     break;
             }
@@ -190,6 +205,12 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
                     break;
                 case R.id.ib_vkontacte:
                     networkId = VkSocialNetwork.ID;
+                    break;
+                case R.id.ib_odnoclassniki:
+                    networkId = OkSocialNetwork.ID;
+                    break;
+                default:
+                    Snackbar.make(view, "Такая соц сеть не найдена", Snackbar.LENGTH_SHORT).show();
                     break;
             }
             SocialNetwork socialNetwork = mSocialNetworkManager.getSocialNetwork(networkId);

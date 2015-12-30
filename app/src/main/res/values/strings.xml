@@ -38,5 +38,8 @@
     <string name="login_in_profile">Войти</string>
     <string name="show_profile">Профиль</string>
     <string name="bt_share">Поделиться</string>
+    <string name="ok_app_id">1239855360</string>
+    <string name="ok_pub_key">CBACLHOKEBABABABA</string>
+    <string name="app_sec_key">EA04B7364759448C34891380</string>
 
 </resources>
