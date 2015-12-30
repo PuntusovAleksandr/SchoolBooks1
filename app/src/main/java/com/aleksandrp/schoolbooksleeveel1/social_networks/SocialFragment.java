@@ -1,6 +1,7 @@
 package com.aleksandrp.schoolbooksleeveel1.social_networks;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.github.gorbin.asne.facebook.FacebookSocialNetwork;
 import com.github.gorbin.asne.googleplus.GooglePlusSocialNetwork;
 import com.github.gorbin.asne.linkedin.LinkedInSocialNetwork;
 import com.github.gorbin.asne.twitter.TwitterSocialNetwork;
+import com.github.gorbin.asne.vk.VkSocialNetwork;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,11 +40,15 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
     private ImageButton twitter;
     private ImageButton linkedin;
     private ImageButton googleplus;
+    private ImageButton odnoklassniki;
+    private ImageButton vk;
 
-    private TextView textFaceBook;;
+    private TextView textFaceBook;
+    ;
     private TextView textTwitter;
     private TextView textLinked;
     private TextView textGoogle;
+    private TextView textOdnoklassniki;
     private TextView textVk;
 
     public SocialFragment() {
@@ -62,11 +68,16 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         linkedin.setOnClickListener(loginClick);
         googleplus = (ImageButton) rootView.findViewById(R.id.ib_google_plus);
         googleplus.setOnClickListener(loginClick);
+        odnoklassniki = (ImageButton) rootView.findViewById(R.id.ib_odnoclassniki);
+        odnoklassniki.setOnClickListener(loginClick);
+        vk = (ImageButton) rootView.findViewById(R.id.ib_vkontacte);
+        vk.setOnClickListener(loginClick);
 
         textFaceBook = (TextView) rootView.findViewById(R.id.text_face_book);
         textTwitter = (TextView) rootView.findViewById(R.id.text_twitter);
         textLinked = (TextView) rootView.findViewById(R.id.text_linkedink);
         textGoogle = (TextView) rootView.findViewById(R.id.text_google_plus_social);
+        textOdnoklassniki = (TextView) rootView.findViewById(R.id.text_odnoklassniki);
         textVk = (TextView) rootView.findViewById(R.id.text_vk);
 
         //Get Keys for initiate SocialNetworks
@@ -76,11 +87,13 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         String LINKEDIN_CONSUMER_KEY = getActivity().getString(R.string.linkedin_consumer_key);
         String LINKEDIN_CONSUMER_SECRET = getActivity().getString(R.string.linkedin_consumer_secret);
         String LINKEDIN_CALLBACK_URL = "https://asneTutorial";
+        String VK_CONSUMER_KEY = getActivity().getString(R.string.vk_app_key);
 
         //Chose permissions
         ArrayList<String> fbScope = new ArrayList<String>();
         fbScope.addAll(Arrays.asList("public_profile, email, user_friends"));
         String linkedInScope = "r_basicprofile+r_fullprofile+rw_nus+r_network+w_messages+r_emailaddress+r_contactinfo";
+        String[] vkScope = {"user_id", "photos", "wall", "ads"};
 
         //Use manager to manage SocialNetworks
         mSocialNetworkManager = (SocialNetworkManager) getFragmentManager().findFragmentByTag(SocialNetworksActivity.SOCIAL_NETWORK_TAG);
@@ -105,12 +118,16 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
             GooglePlusSocialNetwork gpNetwork = new GooglePlusSocialNetwork(this);
             mSocialNetworkManager.addSocialNetwork(gpNetwork);
 
+            //Init and add to manager VK
+            VkSocialNetwork vkNetwork = new VkSocialNetwork(this, VK_CONSUMER_KEY, vkScope);
+            mSocialNetworkManager.addSocialNetwork(vkNetwork);
+
             //Initiate every network from mSocialNetworkManager
             getFragmentManager().beginTransaction().add(mSocialNetworkManager, SocialNetworksActivity.SOCIAL_NETWORK_TAG).commit();
             mSocialNetworkManager.setOnInitializationCompleteListener(this);
         } else {
             //if manager exist - get and setup login only for initialized SocialNetworks
-            if(!mSocialNetworkManager.getInitializedSocialNetworks().isEmpty()) {
+            if (!mSocialNetworkManager.getInitializedSocialNetworks().isEmpty()) {
                 List<SocialNetwork> socialNetworks = mSocialNetworkManager.getInitializedSocialNetworks();
                 for (SocialNetwork socialNetwork : socialNetworks) {
                     socialNetwork.setOnLoginCompleteListener(this);
@@ -121,9 +138,9 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         return rootView;
     }
 
-    private void initSocialNetwork(SocialNetwork socialNetwork){
-        if(socialNetwork.isConnected()){
-            switch (socialNetwork.getID()){
+    private void initSocialNetwork(SocialNetwork socialNetwork) {
+        if (socialNetwork.isConnected()) {
+            switch (socialNetwork.getID()) {
                 case FacebookSocialNetwork.ID:
                     textFaceBook.setText(R.string.show_profile);
                     break;
@@ -136,9 +153,13 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
                 case GooglePlusSocialNetwork.ID:
                     textGoogle.setText(R.string.show_profile);
                     break;
+                case VkSocialNetwork.ID:
+                    textVk.setText(R.string.show_profile);
+                    break;
             }
         }
     }
+
     @Override
     public void onSocialNetworkManagerInitialized() {
         //when init SocialNetworks - get and setup login only for initialized SocialNetworks
@@ -154,7 +175,7 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         @Override
         public void onClick(View view) {
             int networkId = 0;
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.ib_facebook:
                     networkId = FacebookSocialNetwork.ID;
                     break;
@@ -167,14 +188,17 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
                 case R.id.ib_google_plus:
                     networkId = GooglePlusSocialNetwork.ID;
                     break;
+                case R.id.ib_vkontacte:
+                    networkId = VkSocialNetwork.ID;
+                    break;
             }
             SocialNetwork socialNetwork = mSocialNetworkManager.getSocialNetwork(networkId);
-            if(!socialNetwork.isConnected()) {
-                if(networkId != 0) {
-                    socialNetwork.requestLogin();
-                    SocialNetworksActivity.showProgress("Загрузка данных профиля");
-                } else {
-                    Toast.makeText(getActivity(), "Wrong networkId", Toast.LENGTH_LONG).show();
+            if (!socialNetwork.isConnected()) {
+                    if (networkId != 0) {
+                        socialNetwork.requestLogin();
+                        SocialNetworksActivity.showProgress("Загрузка данных профиля");
+                    } else {
+                        Snackbar.make(view, "Wrong networkId", Snackbar.LENGTH_SHORT).show();
                 }
             } else {
                 startProfile(socialNetwork.getID());
@@ -194,7 +218,7 @@ public class SocialFragment extends Fragment implements SocialNetworkManager.OnI
         Toast.makeText(getActivity(), "ОШИБКА: " + errorMessage, Toast.LENGTH_LONG).show();
     }
 
-    private void startProfile(int networkId){
+    private void startProfile(int networkId) {
         ProfileFragment profile = ProfileFragment.newInstannce(networkId);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .addToBackStack("profile")
