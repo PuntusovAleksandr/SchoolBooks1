@@ -48,6 +48,23 @@
         <activity
             android:name=".social_networks.SocialNetworksActivity"
             android:screenOrientation="portrait"/>
+
+
+        <activity
+            android:name="ru.ok.android.sdk.OkAuthActivity"
+            android:launchMode="singleTask"
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="okauth"
+                    android:host="ok1239855360" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
