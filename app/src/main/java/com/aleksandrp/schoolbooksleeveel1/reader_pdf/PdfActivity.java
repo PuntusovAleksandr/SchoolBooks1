@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.aleksandrp.schoolbooksleeveel1.R;
 import com.aleksandrp.schoolbooksleeveel1.ads.banner.Ads;
+import com.aleksandrp.schoolbooksleeveel1.params.StaticParams;
 import com.aleksandrp.schoolbooksleeveel1.values.StaticValues;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -117,27 +118,29 @@ public class PdfActivity extends AppCompatActivity
         path = intent.getStringExtra(PATH_FILE);
         File pdfFile = new File(path);
         if (pdfFile.exists()) {
-            try {
-                mPdfView = (PDFView) findViewById(R.id.pdfview);
+            if (mPdfView == null) {
                 try {
-                    mPdfView.fromFile(pdfFile)
-                            .defaultPage(pageNumberDef)
-                            .swipeVertical(true)
-                            .showMinimap(true)
-                            .enableSwipe(true)
-                            .onLoad(this)
-                            .onPageChange(this)
-                            .load();
-                } catch (RuntimeException r) {
-                    System.out.println("=======ERROR======" + r.getLocalizedMessage());
+                    mPdfView = (PDFView) findViewById(R.id.pdfview);
+                    try {
+                        mPdfView.fromFile(pdfFile)
+                                .defaultPage(pageNumberDef)
+                                .swipeVertical(true)
+                                .showMinimap(true)
+                                .enableSwipe(true)
+                                .onLoad(this)
+                                .onPageChange(this)
+                                .load();
+                    } catch (RuntimeException r) {
+                        System.out.println("=======ERROR======" + r.getLocalizedMessage());
+                    }
+                    title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
+                    setTitle(title);
+                    pageCount = mPdfView.getCurrentPage();
+                } catch (Exception e) {
+                    Toast.makeText(PdfActivity.this, "Перезагрузите файл", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
-                title = path.substring(path.lastIndexOf("/"), path.lastIndexOf("."));
-                setTitle(title);
-                pageCount = mPdfView.getCurrentPage();
-            } catch (Exception e) {
-                Toast.makeText(PdfActivity.this, "Перезагрузите файл", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+            }else mPdfView.jumpTo(StaticParams.getPageNumber());
         } else Toast.makeText(PdfActivity.this, "Файл поврежден", Toast.LENGTH_SHORT).show();
 
         pdfFile.canRead();
@@ -145,7 +148,6 @@ public class PdfActivity extends AppCompatActivity
     }
 
     private void setUi() {
-
         numberPicker = (NumberPicker) findViewById(R.id.numberPicker);
         leftArrow = (ImageView) findViewById(R.id.iv_left_arrow);
         rightArrow = (ImageView) findViewById(R.id.iv_right_arrow);
@@ -156,7 +158,6 @@ public class PdfActivity extends AppCompatActivity
         leftArrow.setOnClickListener(listener);
         rightArrow.setOnClickListener(listener);
         numberPage.setOnClickListener(listener);
-
     }
 
     View.OnClickListener listener = new View.OnClickListener() {
@@ -181,6 +182,7 @@ public class PdfActivity extends AppCompatActivity
                 default:
                     break;
             }
+            StaticParams.setPageNumber(pageNumberDef);
         }
     };
 
@@ -231,6 +233,9 @@ public class PdfActivity extends AppCompatActivity
      */
     @Override
     public void loadComplete(int nPages) {
+        if (mPdfView != null) {
+            mPdfView.jumpTo(StaticParams.getPageNumber());
+        }
         mProgressBar.setVisibility(View.VISIBLE);
         Toast.makeText(PdfActivity.this, "Загрузка " + nPages + " страниц", Toast.LENGTH_SHORT).show();
         mProgressBar.setVisibility(View.INVISIBLE);

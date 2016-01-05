@@ -22,7 +22,9 @@ import com.github.gorbin.asne.core.persons.SocialPerson;
 import com.github.gorbin.asne.facebook.FacebookSocialNetwork;
 import com.github.gorbin.asne.googleplus.GooglePlusSocialNetwork;
 import com.github.gorbin.asne.linkedin.LinkedInSocialNetwork;
+import com.github.gorbin.asne.odnoklassniki.OkSocialNetwork;
 import com.github.gorbin.asne.twitter.TwitterSocialNetwork;
+import com.github.gorbin.asne.vk.VkSocialNetwork;
 import com.squareup.picasso.Picasso;
 
 public class ProfileFragment extends Fragment implements OnRequestSocialPersonCompleteListener {
@@ -231,6 +233,14 @@ public class ProfileFragment extends Fragment implements OnRequestSocialPersonCo
                 break;
             case FacebookSocialNetwork.ID:
                 color = getResources().getColor(R.color.facebook);
+                image = R.drawable.com_facebook_profile_picture_blank_square;
+                break;
+            case VkSocialNetwork.ID:
+                color = getResources().getColor(R.color.linkedin);
+                image = R.drawable.com_facebook_profile_picture_blank_square;
+                break;
+            case OkSocialNetwork.ID:
+                color = getResources().getColor(R.color.googleplus);
                 image = R.drawable.com_facebook_profile_picture_blank_square;
                 break;
         }

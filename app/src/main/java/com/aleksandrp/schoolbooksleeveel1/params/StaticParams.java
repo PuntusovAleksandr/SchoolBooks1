@@ -8,6 +8,16 @@ public class StaticParams {
     private static boolean enableButtonLoadFile = false;
     private static boolean proccessAsyn = false;
 
+    private static int pageNumber;
+
+    public static int getPageNumber() {
+        return pageNumber;
+    }
+
+    public static void setPageNumber(int pageNumber) {
+        StaticParams.pageNumber = pageNumber;
+    }
+
     public static boolean isProccessAsyn() {
         return proccessAsyn;
     }
