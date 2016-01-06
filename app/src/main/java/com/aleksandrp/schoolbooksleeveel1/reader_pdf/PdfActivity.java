@@ -128,7 +128,7 @@ public class PdfActivity extends AppCompatActivity
                         mPdfView.fromFile(pdfFile)
                                 .defaultPage(pageNumberDef)
                                 .swipeVertical(true)
-                                .showMinimap(true)
+                                .showMinimap(false)
                                 .enableSwipe(true)
                                 .onLoad(this)
                                 .onPageChange(this)
