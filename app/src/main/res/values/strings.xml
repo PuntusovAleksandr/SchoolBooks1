@@ -41,5 +41,6 @@
     <string name="ok_app_id">1239855360</string>
     <string name="ok_pub_key">CBACLHOKEBABABABA</string>
     <string name="app_sec_key">EA04B7364759448C34891380</string>
+    <string name="text_info">Данная программа разработана для использования в средне-образовательных школах в качестве электронной книги.</string>
 
 </resources>

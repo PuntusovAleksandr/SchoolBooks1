@@ -86,7 +86,7 @@ public class StartActivity extends AppCompatActivity
             String android_id = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
             String deviceId = md5(android_id).toUpperCase(Locale.ENGLISH);
             AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(deviceId)
+//                    .addTestDevice(deviceId)
 //                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                     .build();
             mInterstitialAd.loadAd(adRequest);

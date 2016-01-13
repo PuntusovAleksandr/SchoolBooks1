@@ -26,7 +26,7 @@ public class Ads {
 
         final AdView banner = (AdView) activity.findViewById(R.id.banner);
         AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(deviceId)
+//                .addTestDevice(deviceId)
 //                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         banner.loadAd(adRequest);
